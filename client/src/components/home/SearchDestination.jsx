@@ -1,23 +1,14 @@
-import React,{useState} from "react";
-import { Box,Card,CardHeader,CardBody,CardFooter,Button,Text,Image,Flex, Avatar,Heading,IconButton, AspectRatio} from "@chakra-ui/react";
+import React from "react";
+import { Text,Box,Heading,Divider,Card,CardHeader,Flex,Avatar,IconButton,CardBody,CardFooter, AspectRatio,Button, Image } from "@chakra-ui/react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BiLike,BiChat,BiShare } from "react-icons/bi";
-import SearchDestination from "./SearchDestination";
 
-
-const PostDestinations = ({destinations}) => {
-    // count likes
-    const [count, setCount] = useState(0)
-
-    const handleLikes = () => {
-        setCount(count + 1)
-    }
-    
-
+function SearchDestination({filteredRegion}) {
+    console.log(filteredRegion)
     return (
         <>
-            <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',lg:'22.5rem',xl:''}} mt='0.5rem'>
-            {destinations.map((dest) => {
+        <Box display='' flexDirection='column' gap='4' ml={{base:'',md:'',lg:'',xl:''}} mt='0.1rem'>
+            {filteredRegion.map((dest) => {
                 return <Card  width={{base:'',md:'',lg:'50vw',xl:''}} height={{base:'',md:'',lg:'80vh',xl:''}} borderWidth='1px' borderColor='' key={dest.name}>
                 <CardHeader>
                     <Flex spacing='4'>
@@ -62,7 +53,7 @@ const PostDestinations = ({destinations}) => {
                     </AspectRatio>
                  )}
     
-                <CardFooter
+                 <CardFooter
                     justify='space-between'
                     flexWrap='wrap'
                     sx={{
@@ -71,8 +62,8 @@ const PostDestinations = ({destinations}) => {
                     },
                     }}
                 >
-                    <Button flex='1' variant='ghost' leftIcon={<BiLike />} onClick={handleLikes}>
-                    {count} Likes
+                    <Button flex='1' variant='ghost' leftIcon={<BiLike />}>
+                    Like
                     </Button>
                     <Button flex='1' variant='ghost' leftIcon={<BiChat />}>
                     Comment
@@ -81,10 +72,11 @@ const PostDestinations = ({destinations}) => {
                     Share
                     </Button>
                 </CardFooter>
-                </Card> 
-            })}
+                </Card>  
+             })} 
             </Box>
         </>
     )
 }
-export default PostDestinations
+
+export default SearchDestination;

@@ -4,12 +4,12 @@ import PostDestinations from "../components/home/PostDestinations";
 import FilteredDestinations from "../components/home/FilteredDestinations";
 import { Flex } from "@chakra-ui/react";
 
-const Home = () => {
+const Home = ({destinations}) => {
     return (
         <Flex>
             <Navbar />
-            <PostDestinations />
-            <FilteredDestinations />
+            <PostDestinations destinations={destinations}/>
+            <FilteredDestinations destinations={destinations}/>
         </Flex>
     )
 }
