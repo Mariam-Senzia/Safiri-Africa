@@ -15,21 +15,21 @@ const Explore = () => {
     },[])
 
     const africanCountries = countries.filter((count) => count.region === 'Africa')
-    console.log(africanCountries)
+    // console.log(africanCountries)
     
 
     return(
         <>
-            <Heading size='lg' mt='1rem' textAlign='center' color='#FF4500'>Explore different countries in Africa</Heading>
+            <Heading size='lg' mt='1.5rem' textAlign='center' color='#FF4500'>Explore different countries in Africa</Heading>
 
             <Box>
-                <ExploreSearch />
+                <ExploreSearch countries={africanCountries}/>
             </Box>
 
-            <Grid templateColumns='repeat(6,1fr)' gap='4' p='2rem' mt='rem'>
+            <Grid templateColumns='repeat(5,1fr)' gap='4' p='2rem' mt='-3rem'>
                 {africanCountries.map(count => (
                   <Link to={`/exploreCountryDetails/${count.name.common}`}>
-                    <Card maxW='sm' borderWidth='1px' borderColor='' width='rem'>
+                    <Card maxW='sm' borderWidth='1px' borderColor='' height='22vh'>
                     <CardBody textAlign={'center'}>
                       <Stack mt='6' spacing='3'>
                         <Heading size='md'>{count.name.common}</Heading>
