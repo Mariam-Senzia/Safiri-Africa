@@ -35,7 +35,6 @@ const Navbar = () => {
 
                 <Divider borderWidth={'1px'}/>
                 <Post />
-                {/* <Button mt={{base:'',md:'',lg:'2.5rem',xl:''}} ml={{base:'',md:'',lg:'1.5rem',xl:''}} bgColor={'#F58549'} width='19vw' colorScheme="#F58549"> <Post /> </Button> */}
             </Box>
 
           </Box>

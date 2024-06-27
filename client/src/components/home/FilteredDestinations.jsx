@@ -18,13 +18,17 @@ const FilteredDestinations = ({destinations}) => {
         return reg.region === currentRegion
     })
 
-    
+    // console.log(destinations)
 
     return (
         <>
             
             <Box bgColor={'#F5F5F5'} height={{base:'',md:'',lg:'100vh',xl:''}} width={{base:'',md:'',lg:'26.9vw',xl:''}} position={'fixed'} ml={{base:'',md:'',lg:'70rem',xl:''}}>
                 <Heading mt={{base:'',md:'',lg:'3rem',xl:''}} ml={{base:'',md:'',lg:'40px',xl:''}} color=''>Preffered region</Heading>
+
+                {/* {destinations.map((dest) => {
+                    return <Text p={{base:'',md:'',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}>{dest.region}</Text>
+                })} */}
 
                 <Divider borderWidth={'1px'} mt={{base:'',md:'',lg:'3rem',xl:''}}/>
                 {/* pass text as parameter on the callback func */}
@@ -39,7 +43,7 @@ const FilteredDestinations = ({destinations}) => {
                 onClick={() => handlePreferences('East Africa')}>East Africa</Text>
                 <Divider borderWidth={'1px'}/>
                 <Text p={{base:'',md:'',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}onClick={() => handlePreferences('Southern Africa')}>Southern Africa</Text>
-                <Divider borderWidth={'1px'}/>
+                <Divider borderWidth={'1px'}/> 
           </Box>
 
           {/* <SearchDestination filteredRegion={filteredRegion}/> */}

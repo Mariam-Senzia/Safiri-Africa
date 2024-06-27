@@ -16,9 +16,9 @@ const PostDestinations = ({destinations}) => {
 
     return (
         <>
-            <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',lg:'22.5rem',xl:''}} mt='0.5rem'>
+            <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',lg:'22.5rem',xl:''}} mt='0.5rem' mb='1rem'>
             {destinations.map((dest) => {
-                return <Card  width={{base:'',md:'',lg:'50vw',xl:''}} height={{base:'',md:'',lg:'80vh',xl:''}} borderWidth='1px' borderColor='' key={dest.name}>
+                return <Card  width={{base:'',md:'',lg:'50vw',xl:''}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth='1px' borderColor='' key={dest.name} >
                 <CardHeader>
                     <Flex spacing='4'>
                     <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
