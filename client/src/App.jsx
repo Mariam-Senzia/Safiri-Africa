@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
 import ExploreCountryDetails from './components/explore/ExploreCountryDetails'
 import PostMessage from './components/home/PostMessage'
+import SignUp from './components/SignUp/SignUp'
 
 function App() {
   const [destinations,setDestinations] = useState([]);
@@ -31,6 +32,7 @@ function App() {
           <Route path={'/signIn'} element={<SignIn />}/>
           <Route path={'/exploreCountryDetails/:countryName'} element={<ExploreCountryDetails />}/>
           <Route path={'/postMessage'} element={<PostMessage />} />
+          <Route path={'/signUp'} element={<SignUp />}/>
 
         </Routes>
       </Router>

@@ -2,12 +2,13 @@ import React,{useState} from "react";
 import { Box,Card,CardHeader,CardBody,CardFooter,Button,Text,Image,Flex, Avatar,Heading,IconButton, AspectRatio} from "@chakra-ui/react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BiLike,BiChat,BiShare } from "react-icons/bi";
-import SearchDestination from "./SearchDestination";
+import ShareModal from "./ShareModal";
+// import SearchDestination from "./SearchDestination";
 
 
 const PostDestinations = ({destinations}) => {
     // count likes
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0);
 
     const handleLikes = () => {
         setCount(count + 1)
@@ -77,8 +78,8 @@ const PostDestinations = ({destinations}) => {
                     <Button flex='1' variant='ghost' leftIcon={<BiChat />}>
                     Comment
                     </Button>
-                    <Button flex='1' variant='ghost' leftIcon={<BiShare />}>
-                    Share
+                    <Button flex='1' variant='ghost' leftIcon={<BiShare />} >
+                    <ShareModal />
                     </Button>
                 </CardFooter>
                 </Card> 

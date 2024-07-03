@@ -9,6 +9,7 @@ from models import db, User, Destination, Media, Like
 import os
 import cloudinary
 from cloudinary import uploader
+from flask_jwt_extended import JWTManager, create_access_token, create_refresh_token
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -16,11 +17,14 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
+app.config['JWT_SECRET_KEY'] = "e27c00e982d1d07709adb9eb"
 
 migrate = Migrate(app, db)
 db.init_app(app)
 CORS(app)
 api = Api(app)
+bcrypt = Bcrypt(app)
+jwt = JWTManager(app)
 
 cloudinary.config( 
         cloud_name = os.getenv("CLOUD_NAME"), 
@@ -103,7 +107,91 @@ class DestinationResource(Resource):
         
 api.add_resource(DestinationResource,'/destinations','/destinations/<int:id>')
 
+#CRUD FOR USER
+class UserResource(Resource):
+    def get(self):
+        users = User.query.all()
 
+        if users:
+            return jsonify([{'name': user.name,'email':user.email} for user in users])
+        else:
+            return jsonify({'message': 'Users not found'})
+        
+    def post(self):
+        try:
+            # receiving data as json
+            formData = request.get_json()
+
+            name = formData.get('name')
+            email = formData.get('email')
+            password = formData.get('password')
+
+
+            if not all([name, email, password]):
+                return jsonify({"error": "Username, email, password, and role are required fields"})
+
+            user_exists = User.query.filter_by(email=email).first()
+            if user_exists:
+                return jsonify({'error': 'User with same email already exists'})
+
+
+            hashedPassword = bcrypt.generate_password_hash(password)
+
+            newUser = User(
+                name = name,
+                email = email,
+                password = hashedPassword
+            )
+            db.session.add(newUser)
+            db.session.commit()
+
+            return jsonify({'message':'User created successfully'})
+
+        except Exception as e:
+            print(e)
+            return jsonify({'message':'Error creating user'})
+        
+    def delete(self,id):
+        user = User.query.get(id)
+
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+
+            return jsonify({'message':'User deleted successfully'})
+        
+        else:
+            return jsonify({'message':'Error deleting user'})
+        
+api.add_resource(UserResource, '/users','/users/<int:id>')
+
+
+# user login
+class UserLoginResource(Resource):
+    def post(self):
+        formData = request.get_json()
+        email = formData.get('email')
+        password = formData.get('password')
+
+        user = User.query.filter_by(email=email).first()
+
+        if user and bcrypt.check_password_hash(user.password,password):
+            access_token = create_access_token(identity = {'email':user.email})
+            refresh_token = create_refresh_token(identity = {'email':user.email})
+
+            return jsonify({
+                'access_token':access_token,
+                'refresh_token': refresh_token,
+                'name':user.name
+            })
+        
+        else:
+            return jsonify({
+                'message':'Invalid email or password'
+            })
+        
+api.add_resource(UserLoginResource,'/login')
+        
 
 
 if __name__=='__main__':
