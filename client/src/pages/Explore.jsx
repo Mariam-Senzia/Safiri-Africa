@@ -1,8 +1,9 @@
 import React,{useEffect,useState} from "react";
-import { Heading,Card,CardBody,CardFooter,Image,Stack,Text,Divider,Grid,Box } from "@chakra-ui/react";
+import { Heading,Card,CardBody,CardFooter,Image,Stack,Text,Divider,Grid,Box,Flex } from "@chakra-ui/react";
 import { color } from "framer-motion";
 import ExploreSearch from "../components/explore/ExploreSearch";
 import { Link } from "react-router-dom";
+import Navbar from "../components/home/Navbar";
 
 const Explore = () => {
     const [countries,setCountries] = useState([])
@@ -19,14 +20,17 @@ const Explore = () => {
     
 
     return(
-        <>
-            <Heading size='lg' mt='1.5rem' textAlign='center' color='#FF4500'>Explore different countries in Africa</Heading>
+        <Flex>
+            <Navbar />
+
+            <Box>
+            <Heading size='lg' mt='3rem' textAlign='center' color='#FF4500' ml='23rem'>Explore different countries in Africa</Heading>
 
             <Box>
                 <ExploreSearch countries={africanCountries}/>
             </Box>
 
-            <Grid templateColumns='repeat(5,1fr)' gap='4' p='2rem' mt='-3rem'>
+            <Grid templateColumns='repeat(4,1fr)' gap='4' p='2rem' mt='-3rem' width='70rem' ml='24rem'>
                 {africanCountries.map(count => (
                   <Link to={`/exploreCountryDetails/${count.name.common}`}>
                     <Card maxW='sm' borderWidth='1px' borderColor='' height='22vh'>
@@ -43,7 +47,8 @@ const Explore = () => {
                 ))}
 
             </Grid>
-        </>
+            </Box>
+        </Flex>
     )
 }
 export default Explore;

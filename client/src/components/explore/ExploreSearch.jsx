@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { Input,InputGroup,InputLeftElement,Grid,Card,CardBody,Heading,Text,Stack } from "@chakra-ui/react";
+import { Input,InputGroup,InputLeftElement,Grid,Card,CardBody,Heading,Text,Stack,Box } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ const ExploreSearch = ({countries}) => {
     
 
     return(
-        <>
+        <Box ml='10rem'>
         <InputGroup>
             <InputLeftElement>
             <SearchIcon ml='80rem' mt='2rem' color='#FF4500'/>
@@ -44,7 +44,7 @@ const ExploreSearch = ({countries}) => {
                 ))}
 
             </Grid>
-        </>
+        </Box>
     )
 }
 export default ExploreSearch;

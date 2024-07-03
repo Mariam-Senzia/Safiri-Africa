@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import { Heading,FormControl,FormLabel,Input,Box,Button,Text,Link,Flex,Alert,AlertIcon} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../home/Navbar";
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -50,7 +51,9 @@ const SignUp = () => {
     }
 
     return(
-        <>
+        <Flex>
+            <Navbar />
+        <Box ml='26rem' width={'70rem'}>   
         {alertStatus && (
            <Alert status='success' width='30rem' ml='auto' mr='auto' mt='4rem' borderRadius='10px'>
             <AlertIcon ml='10rem'/>
@@ -81,7 +84,8 @@ const SignUp = () => {
 
           </form>
         </Box>
-        </>
+        </Box> 
+        </Flex>
     )
 }
 export default SignUp;
