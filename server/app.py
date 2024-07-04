@@ -191,6 +191,41 @@ class UserLoginResource(Resource):
             })
         
 api.add_resource(UserLoginResource,'/login')
+
+# user profile
+class UserProfileResource(Resource):
+    def get(self):
+        users = User.query.all()
+
+        if users:
+            return jsonify([{'user':user.name,'description': user.description,'profile_url': user.profile_url} for user in users])
+        else:
+            return jsonify({'message':'Users not found'})
+        
+    def post(self):
+        try:
+            name = request.form.get('name')
+            description = request.form.get('description')
+            profile_url = request.files.get('profile_url')
+
+            upload_media = cloudinary.uploader.upload(profile_url)
+            new_url = upload_media['secure_url']
+
+            new_Profile = User(
+                name = name,
+                description = description,
+                profile_url = new_url
+            )
+            db.session.add(new_Profile)
+            db.session.commit()
+
+            return jsonify({'message':'Profile updated successfully'})
+        
+        except Exception as e:
+            print(e)
+            return jsonify({'message':'Error updating profile'})
+        
+api.add_resource(UserProfileResource,'/userProfile')
         
 
 

@@ -55,7 +55,7 @@ const SignUp = () => {
             <Navbar />
         <Box ml='26rem' width={'70rem'}>   
         {alertStatus && (
-           <Alert status='success' width='30rem' ml='auto' mr='auto' mt='4rem' borderRadius='10px'>
+           <Alert status='success' width='30rem' mt='4rem' borderRadius='10px'>
             <AlertIcon ml='10rem'/>
             Welcome to Safiri Africa {formData.name}
            </Alert> 

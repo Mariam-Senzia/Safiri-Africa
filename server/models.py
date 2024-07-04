@@ -9,9 +9,11 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=False)
+    name = db.Column(db.String)
+    email = db.Column(db.String)
     password = db.Column(db.Text)
+    description = db.Column(db.String)
+    profile_url = db.Column(db.String)
 
     destinations = db.relationship('Destination', backref='user')
     all_likes = db.relationship('Like', backref='user_likes')
