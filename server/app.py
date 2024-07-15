@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from flask_restful import Api, Resource
-from models import db, User, Destination, Media, Like
+from models import db, User, Destination, Media, Like, Comment
 import os
 import cloudinary
 from cloudinary import uploader
@@ -226,7 +226,101 @@ class UserProfileResource(Resource):
             return jsonify({'message':'Error updating profile'})
         
 api.add_resource(UserProfileResource,'/userProfile')
+
+# CRUD FOR LIKES
+class LikesResource(Resource):
+    def get(self):
+        likes = Like.query.all()
+
+        if likes:
+            return jsonify([{'id':like.id,'user_id':like.user_id, 'destination_id':like.destination_id,'number_of_likes': like.number_of_likes} for like in likes])
+        else:
+            return jsonify({'message':'Likes not found'})
         
+    def post(self):
+        try:
+            data = request.get_json()
+            user_id = data.get('user_id')
+            destination_id = data.get('destination_id')
+            number_of_likes = data.get('number_of_likes')
+            
+            newLike = Like(
+                user_id = user_id,
+                destination_id = destination_id,
+                number_of_likes = number_of_likes
+            )
+            db.session.add(newLike)
+            db.session.commit()
+
+            return jsonify({'message':'Liked successfully'})
+        
+        except Exception as e:
+            print(e)
+            return jsonify({'message':'Error posting likes'})
+        
+    def delete(self,id):
+        like = Like.query.filter_by(id = id).first()
+
+        if like:
+            db.session.delete(like)
+            db.session.commit()
+
+            return jsonify({'message':'Like deleted successfully'})
+        
+        else:
+            return jsonify({'message':'Error deleting Like'})
+        
+api.add_resource(LikesResource,'/likes' ,'/likes/<int:id>')
+
+
+# CRUD FOR COMMENTS
+class CommentResource(Resource):
+    def get(self):
+        comments = Comment.query.all()
+
+        if comments:
+            return jsonify([{'id': comment.id,'user_id': comment.user_id,'destination_id': comment.destination_id,'comment_text': comment.comment_text} for comment in comments])
+
+        else:
+            return jsonify({'message':'Comments not found'})
+        
+    def post(self):
+        try:
+            data = request.get_json()
+            user_id = data.get('user_id')
+            destination_id = data.get('destination_id')
+            comment_text = data.get('comment_text')
+
+            new_comment = Comment(
+                user_id = user_id,
+                destination_id = destination_id,
+                comment_text = comment_text
+            )
+            db.session.add(new_comment)
+            db.session.commit()
+
+            return jsonify({'message':'Comment posted successfully'})
+
+        except Exception as e:
+            print(e)
+            return jsonify({'message':'Error posting comment'})
+        
+    def delete(self,id):
+        comment = Comment.query.filter_by(id = id).first()
+
+        if comment:
+            db.session.delete(comment)
+            db.session.commit()
+
+            return jsonify({'message':'Comment deleted successfully'})
+        
+        else: 
+            return jsonify({'message':'Error deleting comment'})
+
+
+api.add_resource(CommentResource,'/comments','/comments/<int:id>')
+
+
 
 
 if __name__=='__main__':

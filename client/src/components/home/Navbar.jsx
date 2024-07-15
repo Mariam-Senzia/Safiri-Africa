@@ -30,7 +30,7 @@ const Navbar = () => {
 
                 <Link to='/signIn'>
                 <Divider borderWidth={'1px'} />
-                <Text p={{base:'',md:'',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}>SignIn</Text>
+                <Text p={{base:'',md:'',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}>Sign In</Text>
                 </Link>
 
                 <Divider borderWidth={'1px'}/>

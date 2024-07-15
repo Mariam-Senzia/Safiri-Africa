@@ -27,10 +27,10 @@ const ExploreSearch = ({countries}) => {
         </InputGroup>
 
 
-        <Grid templateColumns='repeat(5,1fr)' gap='4' p='2rem' mt='rem'>
+        <Grid templateColumns='repeat(5,1fr)' gap='4' p='2rem' mt='rem' ml='14rem'>
                 {filteredCountries.map(count => (
                   <Link to={`/exploreCountryDetails/${count.name.common}`}>
-                    <Card maxW='sm' borderWidth='1px' borderColor='' height='22vh'>
+                    <Card maxW='sm' borderWidth='1px' borderColor='' height='22vh' width='15.7rem'>
                     <CardBody textAlign={'center'}>
                       <Stack mt='6' spacing='3'>
                         <Heading size='md'>{count.name.common}</Heading>
