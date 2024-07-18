@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading,Box,Text,Flex,Button,Image,Divider} from "@chakra-ui/react";
+import { Heading,Box,Text,Flex,Image,Divider} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Post from "../../pages/Post";
 

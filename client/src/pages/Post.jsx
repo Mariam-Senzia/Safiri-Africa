@@ -65,9 +65,6 @@ const Post = () => {
     return (
         <>
         <Button onClick={onOpen} bgColor={'#F58549'} mt={{base:'',md:'',lg:'2.5rem',xl:''}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}width='19vw' colorScheme="#F58549" color=''>Create Post</Button>
-      {/* <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button> */}
 
       <Modal
         initialFocusRef={initialRef}
@@ -111,8 +108,8 @@ const Post = () => {
                 <option>Select African region</option>
                 <option>Nothern Africa</option>
                 <option>Western Africa</option>
-                <option>Central africa</option>
-                <option>East africa</option>
+                <option>Central Africa</option>
+                <option>East Africa</option>
                 <option>Souther Africa</option>
               </Select>
             </FormControl>
