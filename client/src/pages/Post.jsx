@@ -1,6 +1,7 @@
 import React,{useState} from "react";
-import { Button,Modal,ModalOverlay,ModalContent,ModalHeader,ModalCloseButton,ModalBody,FormControl,FormLabel,Input,ModalFooter,useDisclosure, Textarea,Select } from "@chakra-ui/react";
+import { Button,Modal,ModalOverlay,ModalContent,ModalHeader,ModalCloseButton,ModalBody,FormControl,FormLabel,Input,ModalFooter,useDisclosure, Textarea,Select,Flex,Avatar,Heading } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import useStore from "../store/UseStore";
 
 
 const Post = () => {
@@ -8,13 +9,15 @@ const Post = () => {
 
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
+    const {loggedInUser} = useStore();
     const [formData,setFormData] = useState({
       title:'',
       location:'',
       description:'',
       type:'',
       region:'',
-      url:''
+      url:'',
+      username:loggedInUser
     })
 
     const navigate = useNavigate();
@@ -30,6 +33,7 @@ const Post = () => {
       formDataToSend.append('type',formData.type);
       formDataToSend.append('region',formData.region);
       formDataToSend.append('url',formData.url)
+      formDataToSend.append('username',formData.username)
 
       fetch('http://127.0.0.1:5555/destinations',{
         method:'POST',
@@ -39,6 +43,15 @@ const Post = () => {
         if(!res.ok){
           throw new Error('Network response was not ok');
         }
+        setFormData({
+          title:'',
+          location:'',
+          description:'',
+          type:'',
+          region:'',
+          url:'',
+          username: loggedInUser
+        });
         navigate('/postMessage')
       })
       // .then(data => {
@@ -64,7 +77,7 @@ const Post = () => {
 
     return (
         <>
-        <Button onClick={onOpen} bgColor={'#F58549'} mt={{base:'',md:'',lg:'2.5rem',xl:''}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}width='19vw' colorScheme="#F58549" color=''>Create Post</Button>
+        <Button onClick={onOpen} bgColor={'#F58549'} mt={{base:'2.5rem',md:'',lg:'4.5rem',xl:''}} ml={{base:'',md:'',lg:'1.5rem',xl:''}} width={{base:'30vw',md:'19vw',lg:'19vw',xl:'19vw'}} colorScheme="#F58549" color=''>Create Post</Button>
 
       <Modal
         initialFocusRef={initialRef}
@@ -74,26 +87,29 @@ const Post = () => {
       >
         <ModalOverlay />
         <ModalContent mt='1rem' width='60rem'>
-          <ModalHeader color='#FF4500'>Create New Post</ModalHeader>
+          <Flex mt='2rem' p='1rem'> 
+            <Heading color='#FF4500' size='lg' ml='0.5rem'  mt='0.5rem'>Create New Post</Heading>
+            <Avatar size='md' ml='7rem' name={loggedInUser}/>
+          </Flex>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <form onSubmit={handleSubmit}>
-            <FormControl>
+            <FormControl isRequired>
               <FormLabel>Title</FormLabel>
               <Input ref={initialRef} placeholder='Destination title' focusBorderColor="#FF4500" name='title' value={formData.title} onChange={handleChange}/>
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl mt={4} isRequired>
               <FormLabel>Location</FormLabel>
               <Input placeholder='Location' focusBorderColor="#FF4500" name='location' value={formData.location} onChange={handleChange}/>
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl mt={4} isRequired>
               <FormLabel>Description</FormLabel>
               <Textarea placeholder='Description' focusBorderColor="#FF4500" name='description' value={formData.description} onChange={handleChange}/>
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl mt={4} isRequired>
               <FormLabel>Type</FormLabel>
               <Select focusBorderColor="#FF4500" name='type' value={formData.type} onChange={handleChange}>
                 <option>Select media type</option>
@@ -102,7 +118,7 @@ const Post = () => {
               </Select>
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl mt={4} isRequired>
               <FormLabel>Region</FormLabel>
               <Select focusBorderColor="#FF4500" name='region' value={formData.region} onChange={handleChange}>
                 <option>Select African region</option>
@@ -114,7 +130,7 @@ const Post = () => {
               </Select>
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl mt={4} isRequired>
               <FormLabel>Image/Video</FormLabel>
               <Input type="file" placeholder='Image/Video' p='0.3rem' name='url' onChange={handleImageChange}/>
             </FormControl>

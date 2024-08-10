@@ -14,6 +14,8 @@ class User(db.Model):
     password = db.Column(db.Text)
     description = db.Column(db.String)
     profile_url = db.Column(db.String)
+    country = db.Column(db.String)
+    city = db.Column(db.String)
 
     destinations = db.relationship('Destination', backref='user')
     all_likes = db.relationship('Like', backref='user_likes')
@@ -24,6 +26,7 @@ class Destination(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    username = db.Column(db.String)
     title = db.Column(db.String, nullable=False)
     location = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
@@ -65,6 +68,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     destination_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
+    username = db.Column(db.String)
     comment_text = db.Column(db.String) 
 
     user_comment = db.relationship('User', backref='user_comments')

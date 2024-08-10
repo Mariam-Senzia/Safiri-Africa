@@ -1,7 +1,8 @@
 import React,{useState} from "react";
-import { Heading,FormControl,FormLabel,Input,Box,Button,Text,Link,Flex,Alert,AlertIcon} from "@chakra-ui/react";
+import { Heading,FormControl,FormLabel,Input,InputGroup,InputRightElement,Box,Button,Flex,Alert,AlertIcon} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../home/Navbar";
+import { ViewIcon,ViewOffIcon } from "@chakra-ui/icons";
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ const SignUp = () => {
     })
     const navigate = useNavigate();
     const [alertStatus, setAlertStatus] = useState(false)
-    // const [alertMessage,setALertMessage] = useState('')
+    const [showPassword,setShowpassword] = useState(false)
 
 
     const handleInputChange = (e) => {
@@ -19,6 +20,11 @@ const SignUp = () => {
             ...formData,
             [e.target.name]:e.target.value
         });
+    }
+    console.log(formData.name)
+
+    const handlePassword = () => {
+        setShowpassword(!showPassword)
     }
 
     const handleSubmitForm = (e) => {
@@ -39,6 +45,8 @@ const SignUp = () => {
                 //     email:'',
                 //     password:''
                 // })
+                // use the browser's localStorage to store the user's name after sign-up and retrieve it later when needed
+                // localStorage.setItem('username',formData.name);
                 setTimeout(() => {
                     navigate('/signIn')
                 },2500)
@@ -52,11 +60,11 @@ const SignUp = () => {
 
     return(
         <Flex>
-            <Navbar />
-        <Box ml='26rem' width={'70rem'}>   
+            {/* <Navbar /> */}
+        <Box ml='16rem' width={'70rem'}>   
         {alertStatus && (
-           <Alert status='success' width='30rem' mt='4rem' borderRadius='10px'>
-            <AlertIcon ml='10rem'/>
+           <Alert status='success' width='30rem' mt='4rem' borderRadius='10px'  ml='auto' mr='auto'>
+            <AlertIcon ml='2rem' />
             Welcome to Safiri Africa {formData.name}
            </Alert> 
         )}
@@ -65,19 +73,24 @@ const SignUp = () => {
 
             <Heading textAlign={'center'} color='#F55E00'>Sign Up</Heading>  
 
-            <FormControl mt={4}>
-              <FormLabel>Name</FormLabel>
+            <FormControl mt={4} isRequired>
+              <FormLabel>Full Name</FormLabel>
               <Input placeholder='' focusBorderColor="#FF4500" name='name' value={formData.name} onChange={handleInputChange}/>
             </FormControl>
  
-            <FormControl mt={4}>
+            <FormControl mt={4} isRequired>
               <FormLabel>Email</FormLabel>
               <Input placeholder='' focusBorderColor="#FF4500" name='email' value={formData.email} onChange={handleInputChange}/>
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl mt={4} isRequired>
               <FormLabel>Password</FormLabel>
-              <Input placeholder='' focusBorderColor="#FF4500" name='password' value={formData.password} onChange={handleInputChange}/>
+              <InputGroup>
+                <Input placeholder='' focusBorderColor="#FF4500" name='password' value={formData.password} onChange={handleInputChange} type={showPassword ? 'text' : 'password'}/>
+                <InputRightElement onClick={handlePassword}>
+                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
 
             <Button type='submit' mt='2rem' width='26rem' bgColor='#F58549' colorScheme="#F58549" mb='1rem'>Sign Up</Button>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const PostMessage = () => {
     return (
-        <Box width='40rem' ml='27rem' mt='15rem'>
+        <Box width='40rem' ml={{base:'',md:'',lg:'27rem',xl:'29rem'}} mt='15rem'>
             <Alert
             status='success'
             variant='subtle'
@@ -22,7 +22,7 @@ const PostMessage = () => {
                 Your destination was posted sucessfully. Explore other amazing places shared by fellow travelers!
             </AlertDescription>
 
-            <Link to='/'>
+            <Link to='/homeDefault'>
             <Text color='#FF4500' mt='1rem'>Back to Home</Text>
             </Link>
             </Alert>

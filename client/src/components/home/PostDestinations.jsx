@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { Box, Card, CardHeader, CardBody, CardFooter, Button, Text, Image, Flex, Avatar, Heading, IconButton, AspectRatio, Input } from "@chakra-ui/react";
+import { Box, Card, CardHeader, CardBody, CardFooter, Button, Text, Image, Flex, Avatar, Heading, IconButton, AspectRatio, Input, Alert,AlertIcon } from "@chakra-ui/react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BiLike, BiChat, BiShare } from "react-icons/bi";
 import ShareModal from "./ShareModal";
+import useStore from "../../store/UseStore";
 
 const PostDestinations = ({ destinations, filteredDestination }) => {
     const [likes, setLikes] = useState([]);
     const [activeDestination, setActiveDestination] = useState(null);
+    const {loggedInUser} = useStore();
     const [formData, setFormData] = useState({
         user_id: '',
         destination_id: '',
-        comment_text: ''
+        comment_text: '',
+        username: loggedInUser
     });
     const [comments, setComments] = useState([]);
+    const {randomColor} = useStore();
+    const [alertStatus,setAlertStatus] = useState(false);
+    
 
+    // likes
     const handleLikes = (destinationId) => {
         const user_id = '';
         const destination_id = destinationId;
@@ -39,6 +46,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
         .then(data => setLikes(data))
     }, [])
 
+    // comments
     const handleComments = (destinationId) => {
         setActiveDestination(destinationId);
     }
@@ -56,6 +64,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
         const user_id = '';
         const destination_id = destinationId;
         const comment_text = formData.comment_text;
+        const username = formData.username;
 
         fetch('http://127.0.0.1:5555/comments', {
             method: 'POST',
@@ -65,10 +74,19 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
             body: JSON.stringify({
                 'user_id': user_id,
                 'destination_id': destination_id,
-                'comment_text': comment_text
+                'comment_text': comment_text,
+                'username': username
             })
         })
         .then(resp => resp.json())
+        .then(() => {
+            setFormData({
+                user_id: '',
+                destination_id: '',
+                comment_text: ''
+            });
+            setAlertStatus(!alertStatus)
+        })
         .catch(e => console.log(e));
     }
 
@@ -81,19 +99,19 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
 
     return (
         <>  
-            {(!filteredDestination || filteredDestination.length === 0) ? ( 
-            <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',lg:'22.5rem',xl:''}} mt='0.5rem' mb='1rem'>
+            {(!filteredDestination || filteredDestination.length === 0) ? (    // main destinations displayed
+            <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',lg:'22.5rem',xl:''}} mt={{base:'rem',md:'0.5rem',lg:'0.5rem',xl:'0.5rem'}} mb='1rem'>
                 {destinations.map((dest) => {
-                    const destLikes = likes.filter(like => like.destination_id === dest.id);
+                    const destLikes = likes.filter((like) => like.destination_id === dest.id);
 
                     return (
-                        <Card width={{base:'',md:'',lg:'50vw',xl:''}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth='1px' borderColor='' key={dest.name}>
+                        <Card width={{base:'',md:'',lg:'50vw',xl:'49vw'}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth='1px' borderColor='' key={dest.id} mt={{base:'10rem',md:'',lg:'',xl:'0.3rem'}}>
                             <CardHeader>
                                 <Flex spacing='4'>
                                     <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                                        <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+                                        <Avatar name={dest.username} bgColor={randomColor} />
                                         <Box>
-                                            <Heading size='sm'>Segun Adebayo</Heading>
+                                            <Heading size='sm'>{dest.username}</Heading>
                                             <Text>{dest.location}</Text>
                                         </Box>
                                     </Flex>
@@ -135,22 +153,28 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                     },
                                 }}
                             >
-                                <Button flex='1' variant='ghost' leftIcon={<BiLike />} onClick={() => handleLikes(dest.id)}>
+                                <Button flex='1' variant='ghost' leftIcon={<BiLike color='#FF4500'/>} onClick={() => handleLikes(dest.id)}>
                                     {destLikes.length} Likes
                                 </Button>
-                                <Button flex='1' variant='ghost' leftIcon={<BiChat />} onClick={() => handleComments(dest.id)}>
+                                <Button flex='1' variant='ghost' leftIcon={<BiChat color='#FF4500'/>} onClick={() => handleComments(dest.id)}>
                                     Comment
                                 </Button>
-                                <Button flex='1' variant='ghost' leftIcon={<BiShare />} >
+                                <Button flex='1' variant='ghost' leftIcon={<BiShare color='#FF4500'/>} >
                                     <ShareModal />
                                 </Button>
                             </CardFooter>
                             {activeDestination === dest.id && (
                                 <>
                                     <form onSubmit={(e) => handleSubmitComment(e, dest.id)}>
+                                        {alertStatus && (
+                                            <Alert status='success' mb='0.5rem' width='18rem' ml='15rem' borderRadius='10px'>
+                                                <AlertIcon />
+                                                Comment posted successfully
+                                            </Alert>
+                                        )}
                                         <Flex mb='1rem'>
-                                            <Avatar size='md' ml='1.5rem'/>
-                                            <Input placeholder='Add a comment...' borderRadius={'20px'} mt='0.2rem' ml='0.5rem' width='37vw' name='comment_text' value={formData.comment_text} onChange={handleCommentInput} focusBorderColor="#48C9B0"/>
+                                            <Avatar size='md' ml='1.5rem' name={loggedInUser}/>
+                                            <Input placeholder='Add a comment...' borderRadius={'20px'} mt='0.2rem' ml='0.5rem' width='37vw' name='comment_text' value={formData.comment_text} onChange={handleCommentInput} focusBorderColor="#FF934F"/>
                                             <Button ml='0.5rem' bgColor='#FF934F' mt='0.2rem' type='submit' colorScheme="#48C9B0" color=''>Post</Button>
                                         </Flex>
                                     </form>
@@ -158,11 +182,11 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                     {comments.map(comm => {
                                         return (
                                             <Flex key={comm.id} mt='1rem' mb='1rem'>
-                                                <Avatar ml='1.5rem' />
+                                                <Avatar ml='1.5rem' name={comm.username}/>
                                                 <Box bgColor='#EBEBEB' ml='0.5rem' width='41.8vw' borderRadius='10px' p='1rem'>
-                                                    <Heading size='' ml='0.5rem' mt='-0.8rem'>User</Heading>
-                                                    <Text ml='0.5rem' fontFamily={'monospace'} color='#7C858D'>User description</Text>
-                                                    <Text ml='0.5rem' mt='1rem'>{comm.comment_text}</Text>
+                                                    <Heading size='' ml='0.5rem' mt='-0.2rem'>{comm.username}</Heading>
+                                                    {/* <Text ml='0.5rem' fontFamily={'monospace'} color='#7C858D'>User description</Text> */}
+                                                    <Text ml='0.5rem' mt='rem'>{comm.comment_text}</Text>
                                                 </Box>
                                             </Flex>
                                         );
@@ -173,18 +197,18 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                     );
                 })}
             </Box>
-            ) : (
+            ) : (    // filteredDestinations
                 <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',lg:'22.5rem',xl:''}} mt='0.5rem' mb='1rem'>
                     {filteredDestination && filteredDestination.map((dest) => {
                         ///filter likes that match destination id
                         const destLikes = likes.filter((like) => like.destination_id === dest.id)
 
                         return (
-                            <Card width={{base:'',md:'',lg:'50vw',xl:''}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth='1px' borderColor='' key={dest.name}>
+                            <Card width={{base:'',md:'',lg:'50vw',xl:'49vw'}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth='1px' borderColor='' key={dest.name} mt={{base:'10rem',md:'',lg:'',xl:'0.5rem'}}>
                                 <CardHeader>
                                     <Flex spacing='4'>
                                         <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                                            <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+                                            <Avatar name={dest.username} bgColor={randomColor} />
                                             <Box>
                                                 <Heading size='sm'>Segun Adebayo</Heading>
                                                 <Text>{dest.location}</Text>
@@ -228,13 +252,13 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                         },
                                     }}
                                 >
-                                    <Button flex='1' variant='ghost' leftIcon={<BiLike />} onClick={() => handleLikes(dest.id)}>
+                                    <Button flex='1' variant='ghost' leftIcon={<BiLike color='#FF4500'/>} onClick={() => handleLikes(dest.id)}>
                                        {destLikes.length} Likes
                                     </Button>
-                                    <Button flex='1' variant='ghost' leftIcon={<BiChat />} onClick={() => handleComments(dest.id)}>
+                                    <Button flex='1' variant='ghost' leftIcon={<BiChat color='#FF4500'/>} onClick={() => handleComments(dest.id)}>
                                         Comment
                                     </Button>
-                                    <Button flex='1' variant='ghost' leftIcon={<BiShare />}>
+                                    <Button flex='1' variant='ghost' leftIcon={<BiShare color='#FF4500'/>}>
                                         <ShareModal />
                                     </Button>
                                 </CardFooter>
@@ -242,8 +266,8 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                      <>
                                      <form onSubmit={(e) => handleSubmitComment(e, dest.id)}>
                                          <Flex mb='1rem'>
-                                             <Avatar size='md' ml='1.5rem'/>
-                                             <Input placeholder='Add a comment...' borderRadius={'20px'} mt='0.2rem' ml='0.5rem' width='37vw' name='comment_text' value={formData.comment_text} onChange={handleCommentInput} focusBorderColor="#48C9B0"/>
+                                             <Avatar size='md' ml='1.5rem' name={loggedInUser}/>
+                                             <Input placeholder='Add a comment...' borderRadius={'20px'} mt='0.2rem' ml='0.5rem' width='37vw' name='comment_text' value={formData.comment_text} onChange={handleCommentInput} focusBorderColor="#FF934F"/>
                                              <Button ml='0.5rem' bgColor='#FF934F' mt='0.2rem' type='submit' colorScheme="#48C9B0" color=''>Post</Button>
                                          </Flex>
                                      </form>
@@ -252,11 +276,17 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                      {comments.map(comm => {
                                          return (
                                              <Flex key={comm.id} mt='1rem' mb='1rem'>
-                                                 <Avatar ml='1.5rem' />
+                                                {alertStatus && (
+                                                    <Alert status='success' mb='0.5rem' width='18rem' ml='15rem' borderRadius='10px'>
+                                                        <AlertIcon />
+                                                        Comment posted successfully
+                                                    </Alert>
+                                                )}
+                                                 <Avatar ml='1.5rem' name={comm.username}/>
                                                  <Box bgColor='#EBEBEB' ml='0.5rem' width='41.8vw' borderRadius='10px' p='1rem'>
-                                                     <Heading size='' ml='0.5rem' mt='-0.8rem'>User</Heading>
-                                                     <Text ml='0.5rem' fontFamily={'monospace'} color='#7C858D'>User description</Text>
-                                                     <Text ml='0.5rem' mt='1rem'>{comm.comment_text}</Text>
+                                                     <Heading size='' ml='0.5rem' mt='-0.2rem'>{dest.username}</Heading>
+                                                     {/* <Text ml='0.5rem' fontFamily={'monospace'} color='#7C858D'>User description</Text> */}
+                                                     <Text ml='0.5rem' mt='rem'>{comm.comment_text}</Text>
                                                  </Box>
                                              </Flex>
                                          );

@@ -1,5 +1,6 @@
 import react,{useState, useEffect} from 'react'
-import Home from './pages/Home'
+import Homepage from './pages/HomePage'
+import HomeDefault from './pages/HomeDefault'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 import Explore from './pages/Explore'
@@ -9,6 +10,9 @@ import ExploreCountryDetails from './components/explore/ExploreCountryDetails'
 import PostMessage from './components/home/PostMessage'
 import SignUp from './components/SignUp/SignUp'
 import PostDestinations from './components/home/PostDestinations'
+import UpdateProfile from './components/profile/UpdateProfile'
+import FilteredDestinations from './components/home/FilteredDestinations'
+
 
 function App() {
   const [destinations,setDestinations] = useState([]);
@@ -24,8 +28,8 @@ function App() {
     <ChakraProvider>
       <Router>
         <Routes>
-
-          <Route path={'/'} element={<Home destinations={destinations}/>}/>
+          <Route path={'/'} element={<Homepage />} />
+          <Route path={'/homeDefault'} element={<HomeDefault destinations={destinations}/>}/>
           <Route path={'/explore'} element={<Explore />}/>
           <Route path={'/profile'} element={<Profile />}/>
           <Route path={'/signIn'} element={<SignIn />}/>
@@ -33,6 +37,7 @@ function App() {
           <Route path={'/postMessage'} element={<PostMessage />} />
           <Route path={'/signUp'} element={<SignUp />}/>
           <Route path={'/postDestinations'} element={<PostDestinations />} />
+          <Route path={'/updateProfile'} element={<UpdateProfile />} />
 
         </Routes>
       </Router>

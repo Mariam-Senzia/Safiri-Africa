@@ -38,12 +38,13 @@ class DestinationResource(Resource):
         destinations = Destination.query.all()
 
         if destinations:
-            return jsonify([{'id': destination.id, 'title':destination.title,'location':destination.location,'description': destination.description, 'type': destination.type, 'user_id': destination.user_id,'url':destination.url,'region':destination.region} for destination in destinations])
+            return jsonify([{'id': destination.id, 'title':destination.title,'location':destination.location,'description': destination.description, 'type': destination.type, 'user_id': destination.user_id,'username': destination.username, 'url':destination.url,'region':destination.region} for destination in destinations])
         else:
             return jsonify({'message':'Destination not found'})
         
     def post(self):
         try:
+            username = request.form.get('username')
             title = request.form.get('title')
             location = request.form.get('location')
             description = request.form.get('description')
@@ -59,6 +60,7 @@ class DestinationResource(Resource):
             new_url = upload_media['secure_url']
 
             new_Destination = Destination(
+                username = username,
                 title = title,
                 location = location,
                 description = description,
@@ -113,7 +115,7 @@ class UserResource(Resource):
         users = User.query.all()
 
         if users:
-            return jsonify([{'name': user.name,'email':user.email} for user in users])
+            return jsonify([{'id': user.id,'name': user.name,'email':user.email,'description': user.description,'profile_url': user.profile_url} for user in users])
         else:
             return jsonify({'message': 'Users not found'})
         
@@ -198,25 +200,36 @@ class UserProfileResource(Resource):
         users = User.query.all()
 
         if users:
-            return jsonify([{'user':user.name,'description': user.description,'profile_url': user.profile_url} for user in users])
+            return jsonify([{'id': user.id,'name':user.name,'email': user.email,'description': user.description,'country': user.country,'city': user.city,'profile_url': user.profile_url} for user in users])
         else:
             return jsonify({'message':'Users not found'})
         
-    def post(self):
+    def put(self):
         try:
             name = request.form.get('name')
+            email = request.form.get('email')
             description = request.form.get('description')
+            country = request.form.get('country')
+            city = request.form.get('city')
             profile_url = request.files.get('profile_url')
 
-            upload_media = cloudinary.uploader.upload(profile_url)
-            new_url = upload_media['secure_url']
+            user_id = request.form.get('id')
+            user = User.query.get(user_id)
 
-            new_Profile = User(
-                name = name,
-                description = description,
-                profile_url = new_url
-            )
-            db.session.add(new_Profile)
+            # Update the user details
+            if not user:
+                return jsonify({'message':'User not found'})
+            
+            user.name = name
+            user.email = email
+            user.description = description
+            user.country = country
+            user.city = city
+
+            if profile_url:
+                upload_media = cloudinary.uploader.upload(profile_url)
+                user.profile_url = upload_media['secure_url']
+
             db.session.commit()
 
             return jsonify({'message':'Profile updated successfully'})
@@ -279,7 +292,7 @@ class CommentResource(Resource):
         comments = Comment.query.all()
 
         if comments:
-            return jsonify([{'id': comment.id,'user_id': comment.user_id,'destination_id': comment.destination_id,'comment_text': comment.comment_text} for comment in comments])
+            return jsonify([{'id': comment.id,'user_id': comment.user_id,'destination_id': comment.destination_id,'comment_text': comment.comment_text,'username': comment.username} for comment in comments])
 
         else:
             return jsonify({'message':'Comments not found'})
@@ -290,11 +303,13 @@ class CommentResource(Resource):
             user_id = data.get('user_id')
             destination_id = data.get('destination_id')
             comment_text = data.get('comment_text')
+            username = data.get('username')
 
             new_comment = Comment(
                 user_id = user_id,
                 destination_id = destination_id,
-                comment_text = comment_text
+                comment_text = comment_text,
+                username = username
             )
             db.session.add(new_comment)
             db.session.commit()
