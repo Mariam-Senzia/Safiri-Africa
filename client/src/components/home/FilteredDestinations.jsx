@@ -6,6 +6,7 @@ import { Text,Box,Heading,Divider,Menu,Button,
    } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import Post from "../../pages/Post";
 
 const FilteredDestinations = ({destinations}) => {
     const navigate = useNavigate()
@@ -25,9 +26,9 @@ const FilteredDestinations = ({destinations}) => {
     return (
         <>
             
-            <Box display={{base:'none',md:'block',lg:'block',xl:'block'}} bgColor={'#F5F5F5'} height={{base:'',md:'',lg:'100vh',xl:''}} width={{base:'',md:'',lg:'26.9vw',xl:''}} position={{base:'',md:'fixed',lg:'fixed',xl:'fixed'}} ml={{base:'',md:'',lg:'70rem',xl:''}}>
+            <Box display={{base:'none',md:'none',lg:'block',xl:'block'}} bgColor={'#F5F5F5'} height={{base:'',md:'',lg:'100vh',xl:''}} width={{base:'',md:'',lg:'25vw',xl:''}} position={{base:'',md:'fixed',lg:'fixed',xl:'fixed'}} ml={{base:'',md:'',lg:'60rem',xl:'68.5rem',xxl:'78rem',xxxl:'rem'}}>
 
-                <Heading mt={{base:'',md:'',lg:'3rem',xl:''}} ml={{base:'',md:'',lg:'40px',xl:''}} color=''>Preffered region</Heading>
+                <Heading mt={{base:'',md:'',lg:'3rem',xl:''}} ml={{base:'',md:'',lg:'10px',xl:'2rem'}} color=''>Preffered region</Heading>
 
                 
                 <Divider borderWidth={'1px'} mt={{base:'',md:'',lg:'3rem',xl:''}}/>
@@ -52,9 +53,9 @@ const FilteredDestinations = ({destinations}) => {
                 
           </Box>
 
-        <Box display={{base:'block',md:'none',lg:'none',xl:'none'}}  mt=''>
+        <Box display={{base:'block',xmd:'flex',md:'flex',lg:'none',xl:'none'}}>
           <Menu >
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} mt='4rem' width='22rem' ml='1rem' bgColor='#F58549' colorScheme="#F58549" position={''}>
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} mt={{base:'6rem',md:'6rem'}} width={{base:'18rem',xxm:'20.5rem',xm:'22rem',sm:'23.8rem',md:'22rem'}} ml={{base:'1rem',md:'17rem'}} bgColor='#F58549' colorScheme="#F58549" position={''} borderRadius='50px'>
                 Preferred Destinations
             </MenuButton>
             <MenuList>
@@ -87,6 +88,10 @@ const FilteredDestinations = ({destinations}) => {
                 </MenuItem>
             </MenuList>
           </Menu>
+
+          <Box mt='3.5rem' ml={{xmd:'7rem',md:'1rem'}} display={{base:'none',xmd:'',md:'',lg:'none',xl:'none'}}>
+            <Post />
+          </Box>
           </Box>
         </>
     )

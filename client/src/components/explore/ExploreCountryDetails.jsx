@@ -19,9 +19,9 @@ const ExploreCountryDetails = () => {
     
     return(
         <>
-        <Box bgImage='https://www.eastafricansafari.net/wp-content/uploads/2023/08/When-Is-the-Best-Time-to-Go-on-an-African-Safari.jpg' bgSize={'cover'} height='100vh' display='flex'>
+        <Box bgImage='https://www.eastafricansafari.net/wp-content/uploads/2023/08/When-Is-the-Best-Time-to-Go-on-an-African-Safari.jpg' bgSize={'cover'} height={{base:'145vh',xxm:'120vh',xm:'115vh',sm:'120vh',xmd:'100vh',md:'',lg:'100vh',xl:'100vh'}} display='flex'>
         {clickedCountry.map((count) => {
-            return <Card borderWidth='1px' width='50rem' ml='20rem' mt='3rem' >
+            return <Card borderWidth='1px' width={{base:'50rem',md:'60rem',lg:'50rem',xl:'50rem'}} ml={{base:'rem',md:'',lg:'15.5rem',xl:'21rem',xxl:'28rem'}} mt={{base:'3rem',xmd:'8rem',md:'10rem',lg:'3rem',xl:'3rem',xxl:'9rem'}} height={{base:'130vh',xxm:'105vh',xm:'100vh',sm:'105vh',xmd:'75vh',md:'70vh',lg:'91vh',xl:'90vh',xxl:'70vh'}} >
             <CardHeader display='flex'>
               <Text fontSize='2xl'>{count.flag}</Text>
               <Heading size='lg' ml='1rem'>{count.name.common}</Heading>
@@ -69,7 +69,7 @@ const ExploreCountryDetails = () => {
                     Languages
                   </Heading>
                   {/* convert to arr then iterate */}
-                  {Object.values(count.languages).map(c => 
+                  {Object.values(count.languages).slice(0,3).map(c => 
                   <Text pt='2' fontSize='sm'>
                     {c}
                   </Text>

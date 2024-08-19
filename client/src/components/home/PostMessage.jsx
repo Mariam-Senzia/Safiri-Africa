@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const PostMessage = () => {
     return (
-        <Box width='40rem' ml={{base:'',md:'',lg:'27rem',xl:'29rem'}} mt='15rem'>
+        <Box width={{base:'',md:'',lg:'40rem',xl:'40rem'}} ml={{base:'',md:'',lg:'27rem',xl:'29rem'}} mt='15rem'>
             <Alert
             status='success'
             variant='subtle'

@@ -15,7 +15,7 @@ const ShareModal = () => {
 
       <Modal isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
-        <ModalContent mt='24.5rem' ml='28rem' width=''>
+        <ModalContent mt={{base:'18rem',md:'33rem',lg:'24.5rem',xl:'24.5rem'}} ml={{base:'8rem',md:'32rem',lg:'28rem',xl:'28rem'}} width=''>
           <ModalHeader>Share to</ModalHeader>
           <ModalCloseButton />
           <ModalBody>

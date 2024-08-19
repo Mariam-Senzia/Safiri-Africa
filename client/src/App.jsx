@@ -12,6 +12,7 @@ import SignUp from './components/SignUp/SignUp'
 import PostDestinations from './components/home/PostDestinations'
 import UpdateProfile from './components/profile/UpdateProfile'
 import FilteredDestinations from './components/home/FilteredDestinations'
+import theme from './theme/customBreakpoints'
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Router>
         <Routes>
           <Route path={'/'} element={<Homepage />} />

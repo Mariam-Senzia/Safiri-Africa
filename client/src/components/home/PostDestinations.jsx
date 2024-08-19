@@ -100,27 +100,27 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
     return (
         <>  
             {(!filteredDestination || filteredDestination.length === 0) ? (    // main destinations displayed
-            <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',lg:'22.5rem',xl:''}} mt={{base:'rem',md:'0.5rem',lg:'0.5rem',xl:'0.5rem'}} mb='1rem'>
+            <Box display='flex' flexDirection='column' gap={{base:'4',md:'',lg:'4',xl:'4'}} ml={{base:'',md:'',lg:'19.6rem',xl:'22.7rem',xxl:'25.9rem'}} mt={{base:'1.5rem',md:'1.5rem',lg:'0.5rem',xl:'0.5rem'}} mb='1rem'>
                 {destinations.map((dest) => {
                     const destLikes = likes.filter((like) => like.destination_id === dest.id);
 
                     return (
-                        <Card width={{base:'',md:'',lg:'50vw',xl:'49vw'}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth='1px' borderColor='' key={dest.id} mt={{base:'10rem',md:'',lg:'',xl:'0.3rem'}}>
+                        <Card width={{base:'',md:'',lg:'50vw',xl:'49vw'}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth={{base:'2px',md:'2px',lg:'1px',xl:'1px'}} borderColor='' key={dest.id} mt={{base:'rem',md:'',lg:'',xl:'0.3rem'}}>
                             <CardHeader>
                                 <Flex spacing='4'>
-                                    <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
+                                    <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap' ml={{base:'-0.5rem',md:'',lg:'',xl:''}}>
                                         <Avatar name={dest.username} bgColor={randomColor} />
                                         <Box>
                                             <Heading size='sm'>{dest.username}</Heading>
-                                            <Text>{dest.location}</Text>
+                                            <Text width={{base:'65vw',xxm:'70vw',xm:'70vw',sm:'70vw',md:'80vw',lg:'40vw',xl:'40vw'}}>{dest.location}</Text>
                                         </Box>
                                     </Flex>
-                                    <IconButton
+                                    {/* <IconButton
                                         variant='ghost'
                                         colorScheme='gray'
                                         aria-label='See menu'
                                         icon={<BsThreeDotsVertical />}
-                                    />
+                                    /> */}
                                 </Flex>
                             </CardHeader>
                             <CardBody>
@@ -135,7 +135,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                     height={{base:'',md:'',lg:'45vh',xl:''}}
                                 />
                             ) : (
-                                <AspectRatio maxW='800px' height='47vh' ratio={1}>
+                                <AspectRatio maxW={{base:'',md:'',lg:'800px',xl:'800px'}} height='47vh' ratio={1}>
                                     <video
                                         title={dest.title}
                                         src={dest.url}
@@ -149,17 +149,17 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                 flexWrap='wrap'
                                 sx={{
                                     '& > button': {
-                                        minW: '136px',
+                                        minW: {base:'90px',md:'',lg:'136px',xl:'136px'},
                                     },
                                 }}
                             >
-                                <Button flex='1' variant='ghost' leftIcon={<BiLike color='#FF4500'/>} onClick={() => handleLikes(dest.id)}>
+                                <Button flex='1' variant='ghost' leftIcon={<BiLike color='#FF4500'/>} onClick={() => handleLikes(dest.id)} ml={{base:'-0.6rem',xxm:'-0.5rem',xm:'-0.2rem',sm:'-0.5rem',md:'',lg:'',xl:''}}>
                                     {destLikes.length} Likes
                                 </Button>
-                                <Button flex='1' variant='ghost' leftIcon={<BiChat color='#FF4500'/>} onClick={() => handleComments(dest.id)}>
+                                <Button flex='1' variant='ghost' leftIcon={<BiChat color='#FF4500'/>} onClick={() => handleComments(dest.id)} ml={{base:'0.5rem',xxm:'1rem',xm:'2rem',sm:'2rem',md:'',lg:'',xl:''}}>
                                     Comment
                                 </Button>
-                                <Button flex='1' variant='ghost' leftIcon={<BiShare color='#FF4500'/>} >
+                                <Button flex='1' variant='ghost' leftIcon={<BiShare color='#FF4500'/>} ml={{base:'0.5rem',xxm:'1rem',xm:'2rem',sm:'2rem',md:'',lg:'',xl:''}}>
                                     <ShareModal />
                                 </Button>
                             </CardFooter>
@@ -167,26 +167,26 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                 <>
                                     <form onSubmit={(e) => handleSubmitComment(e, dest.id)}>
                                         {alertStatus && (
-                                            <Alert status='success' mb='0.5rem' width='18rem' ml='15rem' borderRadius='10px'>
+                                            <Alert status='success' mb={{base:'1rem',md:'1rem',lg:'0.5rem',xl:'0.5rem'}} width={{base:'17.5rem',md:'',lg:'18rem',xl:'18rem'}} ml={{base:'3rem',md:'16rem',lg:'15rem',xl:'15rem'}} borderRadius={{base:'10px',md:'',lg:'10px',xl:'10px'}}>
                                                 <AlertIcon />
                                                 Comment posted successfully
                                             </Alert>
                                         )}
                                         <Flex mb='1rem'>
-                                            <Avatar size='md' ml='1.5rem' name={loggedInUser}/>
-                                            <Input placeholder='Add a comment...' borderRadius={'20px'} mt='0.2rem' ml='0.5rem' width='37vw' name='comment_text' value={formData.comment_text} onChange={handleCommentInput} focusBorderColor="#FF934F"/>
+                                            <Avatar size='md' ml={{base:'0.1rem',xxm:'0.3rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',lg:'1.5rem',xl:'1.5rem'}} name={loggedInUser}/>
+                                            <Input placeholder='Add a comment...' borderRadius={'20px'} mt='0.2rem' ml='0.5rem' width={{base:'56.5vw',xxm:'60vw',xm:'61vw',sm:'63vw',md:'68vw',lg:'36vw',xl:'37vw'}} name='comment_text' value={formData.comment_text} onChange={handleCommentInput} focusBorderColor="#FF934F"/>
                                             <Button ml='0.5rem' bgColor='#FF934F' mt='0.2rem' type='submit' colorScheme="#48C9B0" color=''>Post</Button>
                                         </Flex>
                                     </form>
-                                    <Heading size='' ml='1.5rem'>Comments {comments.length}</Heading>
+                                    <Heading size='' ml={{base:'0.1rem',xxm:'0.5rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',lg:'1.5rem',xl:'1.5rem'}}>Comments {comments.length}</Heading>
                                     {comments.map(comm => {
                                         return (
                                             <Flex key={comm.id} mt='1rem' mb='1rem'>
-                                                <Avatar ml='1.5rem' name={comm.username}/>
-                                                <Box bgColor='#EBEBEB' ml='0.5rem' width='41.8vw' borderRadius='10px' p='1rem'>
-                                                    <Heading size='' ml='0.5rem' mt='-0.2rem'>{comm.username}</Heading>
+                                                <Avatar ml={{base:'0.1rem',xxm:'0.3rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',lg:'1.5rem',xl:'1.5rem'}} name={comm.username}/>
+                                                <Box bgColor='#EBEBEB' ml='0.5rem' width={{base:'16rem',xxm:'18rem',xm:'19.5rem',sm:'21rem',xmd:'35rem',md:'40rem',lg:'33.5rem',xl:'38.9rem',xxl:'43.5rem'}} borderRadius='10px' p='1rem'>
+                                                    <Heading size='' ml={{base:'-0.5rem',md:'',lg:'0.5rem',xl:'0.5rem'}} mt={{base:'-0.6rem',md:'',lg:'-0.2rem',xl:'-0.2rem'}}>{comm.username}</Heading>
                                                     {/* <Text ml='0.5rem' fontFamily={'monospace'} color='#7C858D'>User description</Text> */}
-                                                    <Text ml='0.5rem' mt='rem'>{comm.comment_text}</Text>
+                                                    <Text ml={{base:'-0.5rem',md:'',lg:'0.5rem',xl:'0.5rem'}} mt='rem'>{comm.comment_text}</Text>
                                                 </Box>
                                             </Flex>
                                         );
@@ -198,28 +198,28 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                 })}
             </Box>
             ) : (    // filteredDestinations
-                <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',lg:'22.5rem',xl:''}} mt='0.5rem' mb='1rem'>
+                <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',lg:'19.6rem',xl:'22.7rem',xxl:'25.9rem'}} mt={{base:'1.5rem',md:'0.5rem',lg:'0.5rem',xl:'0.5rem'}} mb='1rem'>
                     {filteredDestination && filteredDestination.map((dest) => {
                         ///filter likes that match destination id
                         const destLikes = likes.filter((like) => like.destination_id === dest.id)
 
                         return (
-                            <Card width={{base:'',md:'',lg:'50vw',xl:'49vw'}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth='1px' borderColor='' key={dest.name} mt={{base:'10rem',md:'',lg:'',xl:'0.5rem'}}>
+                            <Card width={{base:'',md:'',lg:'50vw',xl:'49vw'}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth={{base:'2px',md:'2px',lg:'1px',xl:'1px'}} borderColor='' key={dest.name} mt={{base:'rem',md:'1rem',lg:'',xl:'0.3rem'}}>
                                 <CardHeader>
                                     <Flex spacing='4'>
-                                        <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
+                                        <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap' ml={{base:'-0.5rem',md:'',lg:'',xl:''}}>
                                             <Avatar name={dest.username} bgColor={randomColor} />
                                             <Box>
-                                                <Heading size='sm'>Segun Adebayo</Heading>
-                                                <Text>{dest.location}</Text>
+                                                <Heading size='sm'>{dest.username}</Heading>
+                                                <Text width={{base:'65vw',xxm:'70vw',xm:'70vw',sm:'70vw',md:'80vw',lg:'40vw',xl:'40vw'}}>{dest.location}</Text>
                                             </Box>
                                         </Flex>
-                                        <IconButton
+                                        {/* <IconButton
                                             variant='ghost'
                                             colorScheme='gray'
                                             aria-label='See menu'
                                             icon={<BsThreeDotsVertical />}
-                                        />
+                                        /> */}
                                     </Flex>
                                 </CardHeader>
                                 <CardBody>
@@ -234,7 +234,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                         height={{base:'',md:'',lg:'45vh',xl:''}}
                                     />
                                 ) : (
-                                    <AspectRatio maxW='800px' height='47vh' ratio={1}>
+                                    <AspectRatio maxW={{base:'',md:'',lg:'800px',xl:'800px'}} height='47vh' ratio={1}>
                                         <video
                                             title={dest.title}
                                             src={dest.url}
@@ -248,45 +248,46 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                     flexWrap='wrap'
                                     sx={{
                                         '& > button': {
-                                            minW: '136px',
+                                            minW: {base:'90px',md:'',lg:'136px',xl:'136px'},
                                         },
                                     }}
                                 >
-                                    <Button flex='1' variant='ghost' leftIcon={<BiLike color='#FF4500'/>} onClick={() => handleLikes(dest.id)}>
+                                    <Button flex='1' variant='ghost' leftIcon={<BiLike color='#FF4500'/>} onClick={() => handleLikes(dest.id)} ml={{base:'-0.6rem',xxm:'-0.5rem',xm:'-0.2rem',sm:'-0.5rem',md:'',lg:'',xl:''}}>
                                        {destLikes.length} Likes
                                     </Button>
-                                    <Button flex='1' variant='ghost' leftIcon={<BiChat color='#FF4500'/>} onClick={() => handleComments(dest.id)}>
+                                    <Button flex='1' variant='ghost' leftIcon={<BiChat color='#FF4500'/>} onClick={() => handleComments(dest.id)} ml={{base:'0.5rem',xxm:'1rem',xm:'2rem',sm:'2rem',md:'',lg:'',xl:''}}>
                                         Comment
                                     </Button>
-                                    <Button flex='1' variant='ghost' leftIcon={<BiShare color='#FF4500'/>}>
+                                    <Button flex='1' variant='ghost' leftIcon={<BiShare color='#FF4500'/>} ml={{base:'0.5rem',xxm:'1rem',xm:'2rem',sm:'2rem',md:'',lg:'',xl:''}}>
                                         <ShareModal />
                                     </Button>
                                 </CardFooter>
                                 {activeDestination === dest.id && (
                                      <>
                                      <form onSubmit={(e) => handleSubmitComment(e, dest.id)}>
+                                        {alertStatus && (
+                                                <Alert status='success' mb={{base:'1rem',md:'1rem',lg:'0.5rem',xl:'0.5rem'}} width={{base:'17.5rem',md:'',lg:'18rem',xl:'18rem'}} ml={{base:'3rem',md:'16rem',lg:'15rem',xl:'15rem'}} borderRadius='10px'>
+                                                    <AlertIcon />
+                                                    Comment posted successfully
+                                                </Alert>
+                                        )}
+
                                          <Flex mb='1rem'>
-                                             <Avatar size='md' ml='1.5rem' name={loggedInUser}/>
-                                             <Input placeholder='Add a comment...' borderRadius={'20px'} mt='0.2rem' ml='0.5rem' width='37vw' name='comment_text' value={formData.comment_text} onChange={handleCommentInput} focusBorderColor="#FF934F"/>
+                                             <Avatar size='md' ml={{base:'0.1rem',xxm:'0.3rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',lg:'1.5rem',xl:'1.5rem'}} name={loggedInUser}/>
+                                             <Input placeholder='Add a comment...' borderRadius={'20px'} mt='0.2rem' ml='0.5rem' width={{base:'56.5vw',xxm:'60vw',xm:'61vw',sm:'63vw',md:'68vw',lg:'36vw',xl:'37vw'}}  name='comment_text' value={formData.comment_text} onChange={handleCommentInput} focusBorderColor="#FF934F"/>
                                              <Button ml='0.5rem' bgColor='#FF934F' mt='0.2rem' type='submit' colorScheme="#48C9B0" color=''>Post</Button>
                                          </Flex>
                                      </form>
 
-                                     <Heading size='' ml='1.5rem'>Comments {comments.length}</Heading>
+                                     <Heading size='' ml={{base:'0.1rem',xxm:'0.5rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',lg:'1.5rem',xl:'1.5rem'}}>Comments {comments.length}</Heading>
                                      {comments.map(comm => {
                                          return (
                                              <Flex key={comm.id} mt='1rem' mb='1rem'>
-                                                {alertStatus && (
-                                                    <Alert status='success' mb='0.5rem' width='18rem' ml='15rem' borderRadius='10px'>
-                                                        <AlertIcon />
-                                                        Comment posted successfully
-                                                    </Alert>
-                                                )}
-                                                 <Avatar ml='1.5rem' name={comm.username}/>
-                                                 <Box bgColor='#EBEBEB' ml='0.5rem' width='41.8vw' borderRadius='10px' p='1rem'>
-                                                     <Heading size='' ml='0.5rem' mt='-0.2rem'>{dest.username}</Heading>
+                                                 <Avatar ml={{base:'0.1rem',xxm:'0.3rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',lg:'1.5rem',xl:'1.5rem'}} name={comm.username}/>
+                                                 <Box bgColor='#EBEBEB' ml='0.5rem' width={{base:'16rem',xxm:'18rem',xm:'19.5rem',sm:'21rem',xmd:'35rem',md:'40rem',lg:'33.5rem',xl:'38.9rem',xxl:'43.5rem'}} borderRadius='10px' p='1rem'>
+                                                     <Heading size='' ml={{base:'-0.5rem',md:'',lg:'0.5rem',xl:'0.5rem'}} mt={{base:'-0.6rem',md:'',lg:'-0.2rem',xl:'-0.2rem'}}>{dest.username}</Heading>
                                                      {/* <Text ml='0.5rem' fontFamily={'monospace'} color='#7C858D'>User description</Text> */}
-                                                     <Text ml='0.5rem' mt='rem'>{comm.comment_text}</Text>
+                                                     <Text ml={{base:'-0.5rem',md:'',lg:'0.5rem',xl:'0.5rem'}} mt='rem'>{comm.comment_text}</Text>
                                                  </Box>
                                              </Flex>
                                          );
