@@ -26,34 +26,35 @@ const FilteredDestinations = ({destinations}) => {
     return (
         <>
             
-            <Box display={{base:'none',md:'none',lg:'block',xl:'block'}} bgColor={'#F5F5F5'} height={{base:'',md:'',lg:'100vh',xl:''}} width={{base:'',md:'',lg:'25vw',xl:''}} position={{base:'',md:'fixed',lg:'fixed',xl:'fixed'}} ml={{base:'',md:'',lg:'60rem',xl:'68.5rem',xxl:'78rem',xxxl:'rem'}}>
+            <Box display={{base:'none',md:'none',slg:'block',lg:'block',xl:'block'}} bgColor={'#F5F5F5'} height={{base:'',md:'',slg:'100vh',lg:'100vh',xl:''}} width={{base:'',md:'',slg:'26vw',lg:'25vw',xl:''}} position={{base:'',md:'fixed',slg:'fixed',lg:'fixed',xl:'fixed'}} ml={{base:'',md:'',slg:'47.4rem',lg:'60rem',xl:'68.5rem',xxl:'78rem',xxxl:''}}>
 
-                <Heading mt={{base:'',md:'',lg:'3rem',xl:''}} ml={{base:'',md:'',lg:'10px',xl:'2rem'}} color=''>Preffered region</Heading>
+                <Heading mt={{base:'',md:'',slg:'2rem',lg:'3rem',xl:''}} ml={{base:'',md:'',slg:'1rem',lg:'10px',xl:'2rem'}} color=''>Preffered region</Heading>
 
                 
-                <Divider borderWidth={'1px'} mt={{base:'',md:'',lg:'3rem',xl:''}}/>
+                <Divider borderWidth={'1px'} mt={{base:'',md:'',slg:'1rem',lg:'3rem',xl:''}}/>
                 {/* pass text as parameter on the callback func */}
-                <Text p={{base:'',md:'',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}
+                <Text p={{base:'',md:'',slg:'1rem',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',slg:'1rem',lg:'1.5rem',xl:''}}
                 onClick={() => handlePreferences('Nothern Africa')}>Nothern Africa</Text>
                 <Divider borderWidth={'1px'}/>
-                <Text p={{base:'',md:'',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}
+                <Text p={{base:'',md:'',slg:'1rem',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',slg:'1rem',lg:'1.5rem',xl:''}}
                 onClick={() => handlePreferences('Western Africa')}>Western Africa</Text>
                 <Divider borderWidth={'1px'} />
-                <Text p={{base:'',md:'',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}
+                <Text p={{base:'',md:'',slg:'1rem',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',slg:'1rem',lg:'1.5rem',xl:''}}
                 onClick={() => handlePreferences('Central Africa')}>Central Africa</Text>
                 <Divider borderWidth={'1px'} />
-                <Text p={{base:'',md:'',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}
+                <Text p={{base:'',md:'',slg:'1rem',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',slg:'1rem',lg:'1.5rem',xl:''}}
                 onClick={() => handlePreferences('East Africa')}>East Africa</Text>
                 <Divider borderWidth={'1px'}/>
-                <Text p={{base:'',md:'',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',lg:'1.5rem',xl:''}} onClick={() => handlePreferences('Southern Africa')}>Southern Africa</Text>
+                <Text p={{base:'',md:'',slg:'1rem',lg:'1rem',xl:''}} _hover={{color:'#FF4500'}} ml={{base:'',md:'',slg:'1rem',lg:'1.5rem',xl:''}} onClick={() => handlePreferences('Southern Africa')}>Southern Africa</Text>
                 <Divider borderWidth={'1px'}/> 
 
-                <Text p={{base:'',md:'',lg:'1rem',xl:''}} ml={{base:'',md:'',lg:'1.5rem',xl:''}}  color='#F07619' onClick={handleResetFilter}>Show All Destinations</Text>
+                <Text p={{base:'',md:'',slg:'1rem',lg:'1rem',xl:''}} ml={{base:'',md:'',slg:'1rem',lg:'1.5rem',xl:''}}  color='#F07619' onClick={handleResetFilter}>Show All Destinations</Text>
                 <Divider borderWidth='1px'/>
                 
           </Box>
 
-        <Box display={{base:'block',xmd:'flex',md:'flex',lg:'none',xl:'none'}}>
+        {/* md screens and below */}
+        <Box display={{base:'block',xmd:'flex',md:'flex',slg:'none',lg:'none',xl:'none'}}>
           <Menu >
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />} mt={{base:'6rem',md:'6rem'}} width={{base:'18rem',xxm:'20.5rem',xm:'22rem',sm:'23.8rem',md:'22rem'}} ml={{base:'1rem',md:'17rem'}} bgColor='#F58549' colorScheme="#F58549" position={''} borderRadius='50px'>
                 Preferred Destinations

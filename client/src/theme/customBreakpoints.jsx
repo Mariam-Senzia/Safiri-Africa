@@ -11,7 +11,7 @@ const breakpoints = {
     lg: '1280px',       // Macbook air
     xl: '1440px',       // Dell
     xxl: '1680px',      // Macbook Pro
-    xxxl: '1728px'      // Large monitors
+    xxxl: ''      // Large monitors
 }
 
 const theme = extendTheme({ breakpoints })

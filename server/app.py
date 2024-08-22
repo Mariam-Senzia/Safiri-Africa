@@ -1,5 +1,5 @@
 import cloudinary.uploader
-from flask import Flask,jsonify,request
+from flask import Flask,jsonify,request,make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
@@ -188,9 +188,9 @@ class UserLoginResource(Resource):
             })
         
         else:
-            return jsonify({
+            return make_response(jsonify({
                 'message':'Invalid email or password'
-            })
+            }), 401)
         
 api.add_resource(UserLoginResource,'/login')
 

@@ -77,7 +77,7 @@ const Post = () => {
 
     return (
         <>
-        <Button onClick={onOpen} bgColor={'#F58549'} mt={{base:'2.5rem',md:'',lg:'4.5rem',xl:''}} ml={{base:'',md:'',lg:'1.5rem',xl:'',xxl:'3rem'}} width={{base:'30vw',md:'19vw',lg:'19vw',xl:'19vw'}} colorScheme="#F58549" color=''>Create Post</Button>
+        <Button onClick={onOpen} bgColor={'#F58549'} mt={{base:'2.5rem',md:'',lg:'4.5rem',xl:''}} ml={{base:'',md:'',slg:'1rem',lg:'1.5rem',xl:'',xxl:'3rem'}} width={{base:'30vw',md:'19vw',lg:'19vw',xl:'19vw'}} colorScheme="#F58549" color=''>Create Post</Button>
 
       <Modal
         initialFocusRef={initialRef}

@@ -12,6 +12,8 @@ const UpdateProfile = () => {
     const fileInputRef = useRef();
     const {loggedInUser} = useStore();
     const [userDetails,setUserDetails] = useState([]);
+    const [errors,setErrors] = useState({});
+    const [existingEmails,setExistingEmails] = useState([]);      //existing emails
     const [formData,setFormData] = useState({
         id: '',
         name: '',
@@ -52,12 +54,38 @@ const UpdateProfile = () => {
         })
     },[]);
 
+    // fetch users and update existing emails state
+    useEffect(() => {
+        fetch('http://127.0.0.1:5555/users')
+        .then(resp => resp.json())
+        .then(data => {
+            const emails = data.map((user) => user.email)
+            setExistingEmails(emails)
+        })
+    },[])
+
+    //validate email
+    const validateForm = () => {
+        const newErrors = {}
+
+        // email format
+        const emailFormat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+        if (!emailFormat.test(formData.email)){
+            newErrors.email = "Please enter a valid email address";
+        }
+
+        setErrors(newErrors)
+        return Object.keys(newErrors).length === 0;      //form is only submitted if there are no errors
+    }
+
     ////form submissions
     const handleInputChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]:e.target.value
         });
+
+        setErrors('')
     }
 
     const handleImageChange = (e) => {
@@ -71,6 +99,7 @@ const UpdateProfile = () => {
     const handleSubmit = (e) => {
         e.preventDefault();  
 
+        if(validateForm()){
         const newData = new FormData();
         newData.append('id',user_id);
         newData.append('name', formData.name);
@@ -106,6 +135,7 @@ const UpdateProfile = () => {
             },2000)
         })
     }
+    }
 
 
     return (
@@ -129,15 +159,15 @@ const UpdateProfile = () => {
             </Box>
 
         <Flex>
-            <Navbar display={{base:'none',sm:'none',md:'',lg:'',xl:''}}/>
+            <Navbar display={{base:'none',sm:'none',md:'',slg:'none',lg:'',xl:''}}/>
 
-            <Box borderWidth='3px' p='2rem' mt={{base:'-4rem',sm:'',md:'',lg:'2.8rem',xl:'1.5rem',xxl:'3rem'}}  width={{base:'60rem',sm:'60rem',md:'60rem',lg:'60rem',xl:'60rem',xxl:'76rem'}} ml={{base:'',sm:'',md:'-0.1rem',lg:'29rem',xl:'27rem'}} borderRadius='10px' height={{base:'',sm:'',md:'',lg:'',xl:'',xxl:'90vh'}}>
+            <Box borderWidth='3px' p='2rem' mt={{base:'-4rem',sm:'',md:'',slg:'1rem',lg:'2.8rem',xl:'1.5rem',xxl:'3rem'}}  width={{base:'60rem',sm:'60rem',md:'60rem',slg:'46.5rem',lg:'60rem',xl:'60rem',xxl:'76rem'}} ml={{base:'',sm:'',md:'-0.1rem',slg:'16rem',lg:'29rem',xl:'27rem'}} borderRadius='10px' height={{base:'',sm:'',md:'',slg:'100vh',lg:'',xl:'',xxl:'90vh'}}>
             {userDetails.map((user) => {
-                return <> <Box display={{base:'none',sm:'',md:'',lg:'block',xl:'block'}}> 
+                return <> <Box display={{base:'none',sm:'',md:'',slg:'block',lg:'block',xl:'block'}}> 
                 <form onSubmit={handleSubmit}>
                 <Heading size='xl' textAlign='center'>Profile</Heading>
 
-                <Flex mt='2rem' ml={{base:'',sm:'',xmd:'',md:'rem',lg:'24rem',xxl:'31.9rem'}} onClick={handleProfilePicture}>
+                <Flex mt='2rem' ml={{base:'',sm:'',xmd:'',md:'rem',slg:'17rem',lg:'24rem',xxl:'31.9rem'}} onClick={handleProfilePicture}>
                     {/* create a url from the selectedImage object */}
                     <Avatar size='2xl' src={selectedImage ? URL.createObjectURL(selectedImage) : user.profile_url}/>
                     <Tooltip label='Update profile picture' bgColor='#EBEBEB' color=''>
@@ -160,9 +190,10 @@ const UpdateProfile = () => {
                         <FormLabel>Full name</FormLabel>
                         <Input focusBorderColor="#F58549" placeholder={user.name} name='name' value={formData.name} onChange={handleInputChange}/>
                     </FormControl>
-                    <FormControl isRequired >
+                    <FormControl isrequired >
                         <FormLabel mt={{base:'3rem',sm:'3rem',md:'3rem',lg:'3rem',xl:'3rem',xxl:'10rem'}}>Email</FormLabel>
                         <Input focusBorderColor="#F58549" placeholder={user.email} name='email' value={formData.email} onChange={handleInputChange}/>
+                        {errors.email && <Text color='red.500'>{errors.email}</Text>}
                     </FormControl>
                 </Flex>
 
@@ -197,7 +228,7 @@ const UpdateProfile = () => {
             </Box>
 
             {/* for mobile/tablet devices */}
-            <Box display={{base:'block',sm:'',md:'',lg:'none',xl:'none'}}>
+            <Box display={{base:'block',sm:'',md:'',slg:'',lg:'none',xl:'none'}}>
             {alertStatus && (
                 <Alert status='success' mb='-6rem' width={{base:'17rem',md:'18rem'}} ml={{base:'1.5rem',sm:'',md:'15rem',lg:'48rem',xl:'48rem'}} borderRadius='10px' mt={{base:'8rem',sm:'',md:'',lg:'0.5rem',xl:'0.5rem'}} >
                     <Flex mt='-3rem'>
@@ -210,7 +241,7 @@ const UpdateProfile = () => {
                 </Alert>
             )}
             </Box>
-            <Box display={{base:'block',sm:'',md:'',lg:'none',xl:'none'}} mt={{base:'125px',md:'11rem'}} borderWidth='2px' borderRadius='10px' width='99.1vw' ml={{base:'-2rem',md:''}}>
+            <Box display={{base:'block',sm:'',md:'',slg:'none',lg:'none',xl:'none'}} mt={{base:'125px',md:'11rem'}} borderWidth='2px' borderRadius='10px' width='99.1vw' ml={{base:'-2rem',md:''}}>
             <form onSubmit={handleSubmit}>
                 <Heading size='xl' textAlign='center' mt='1rem'>Profile</Heading>
 
