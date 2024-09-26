@@ -38,16 +38,29 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
             })
         })
         .then(res => res.json())
-        // .then(newLike => {
-        //     setLikes(prevLikes => [...prevLikes, newLike])
-        // })
+        .then(newLike => {
+            // Update the state directly
+            setLikes(prevLikes => [...prevLikes, newLike]);
+
+            // Fetch the updated list of likes to ensure it reflects in the UI
+            fetchLikes();
+        })
+        .catch(err => console.error("Error liking destination:", err));
     }
 
-    useEffect(() => {
+    // Fetch likes from the server when the component mounts
+    const fetchLikes = () => {
         fetch('http://127.0.0.1:5555/likes')
         .then(res => res.json())
-        .then(data => setLikes(data))
-    }, [])
+        .then(data => {
+            setLikes(data);  // Update the likes state with the data
+        })
+        .catch(err => console.error("Error fetching likes:", err));
+    };
+
+    useEffect(() => {
+        fetchLikes();  // Initial fetch for likes
+    }, []);
 
     // comments
     const handleComments = (destinationId) => {
@@ -89,21 +102,26 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                 comment_text: ''
             });
             setAlertStatus(!alertStatus)
+            fetchComments();
         })
         .catch(e => console.log(e));
     }
 
-    useEffect(() => {
-            fetch('http://127.0.0.1:5555/comments')
+    const fetchComments = () => {
+        fetch('http://127.0.0.1:5555/comments')
             .then(resp => resp.json())
             .then(data => setComments(data.filter(comm => comm.destination_id === activeDestination)))
             .catch(e => console.log(e));
+    }
+
+    useEffect(() => {
+        fetchComments();    
     }, [activeDestination]);
 
     return (
         <>  
             {(!filteredDestination || filteredDestination.length === 0) ? (    // main destinations displayed
-            <Box display='flex' flexDirection='column' gap={{base:'4',md:'',lg:'4',xl:'4'}} ml={{base:'',md:'',slg:'15rem',lg:'19.6rem',xl:'22.7rem',xxl:'25.9rem'}} mt={{base:'1.5rem',md:'1.5rem',slg:'0.5rem',lg:'0.5rem',xl:'0.5rem'}} mb='1rem'>
+            <Box display='flex' flexDirection='column' gap={{base:'4',md:'',lg:'4',xl:'4'}} ml={{base:'',md:'',slg:'15rem',lg:'19.6rem',xl:'22.7rem',dm:'24rem',xxl:'25.9rem'}} mt={{base:'1.5rem',md:'1.5rem',slg:'0.5rem',lg:'0.5rem',xl:'0.5rem'}} mb='1rem'>
                 {destinations.map((dest) => {
                     const destLikes = likes.filter((like) => like.destination_id === dest.id);
 
@@ -186,7 +204,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                         return (
                                             <Flex key={comm.id} mt='1rem' mb='1rem'>
                                                 <Avatar ml={{base:'0.1rem',xxm:'0.3rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',slg:'1rem',lg:'1.5rem',xl:'1.5rem'}} name={comm.username}/>
-                                                <Box bgColor='#EBEBEB' ml='0.5rem' width={{base:'16rem',xxm:'18rem',xm:'19.5rem',sm:'21rem',xmd:'35rem',md:'40rem',slg:'41.1vw',lg:'33.5rem',xl:'38.9rem',xxl:'43.5rem'}} borderRadius='10px' p='1rem'>
+                                                <Box bgColor='#EBEBEB' ml='0.5rem' width={{base:'16rem',xxm:'18rem',xm:'19.5rem',sm:'21rem',xmd:'35rem',md:'40rem',slg:'41.1vw',lg:'33.5rem',xl:'38.9rem',dm:'40.2rem',xxl:'43.5rem'}} borderRadius='10px' p='1rem'>
                                                     <Heading size='' ml={{base:'-0.5rem',md:'',lg:'0.5rem',xl:'0.5rem'}} mt={{base:'-0.6rem',md:'',lg:'-0.2rem',xl:'-0.2rem'}}>{comm.username}</Heading>
                                                     {/* <Text ml='0.5rem' fontFamily={'monospace'} color='#7C858D'>User description</Text> */}
                                                     <Text ml={{base:'-0.5rem',md:'',lg:'0.5rem',xl:'0.5rem'}} mt='rem'>{comm.comment_text}</Text>
@@ -201,7 +219,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                 })}
             </Box>
             ) : (    // filteredDestinations
-                <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',slg:'15rem',lg:'19.6rem',xl:'22.7rem',xxl:'25.9rem'}} mt={{base:'1.5rem',md:'0.5rem',lg:'0.5rem',xl:'0.5rem'}} mb='1rem'>
+                <Box display='flex' flexDirection='column' gap='4' ml={{base:'',md:'',slg:'15rem',lg:'19.6rem',xl:'22.7rem',dm:'24rem',xxl:'25.9rem'}} mt={{base:'1.5rem',md:'0.5rem',lg:'0.5rem',xl:'0.5rem'}} mb='1rem'>
                     {filteredDestination && filteredDestination.map((dest) => {
                         ///filter likes that match destination id
                         const destLikes = likes.filter((like) => like.destination_id === dest.id)
@@ -283,11 +301,12 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                      </form>
 
                                      <Heading size='' ml={{base:'0.1rem',xxm:'0.5rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',slg:'1rem',lg:'1.5rem',xl:'1.5rem'}}>Comments {comments.length}</Heading>
+
                                      {comments.map(comm => {
                                          return (
                                              <Flex key={comm.id} mt='1rem' mb='1rem'>
                                                  <Avatar ml={{base:'0.1rem',xxm:'0.3rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',slg:'1rem',lg:'1.5rem',xl:'1.5rem'}} name={comm.username}/>
-                                                 <Box bgColor='#EBEBEB' ml='0.5rem' width={{base:'16rem',xxm:'18rem',xm:'19.5rem',sm:'21rem',xmd:'35rem',md:'40rem',slg:'26rem',lg:'33.5rem',xl:'38.9rem',xxl:'43.5rem'}} borderRadius='10px' p='1rem'>
+                                                 <Box bgColor='#EBEBEB' ml='0.5rem' width={{base:'16rem',xxm:'18rem',xm:'19.5rem',sm:'21rem',xmd:'35rem',md:'40rem',slg:'26rem',lg:'33.5rem',xl:'38.9rem',dm:'40.2rem',xxl:'43.5rem'}} borderRadius='10px' p='1rem'>
                                                      <Heading size='' ml={{base:'-0.5rem',md:'',lg:'0.5rem',xl:'0.5rem'}} mt={{base:'-0.6rem',md:'',lg:'-0.2rem',xl:'-0.2rem'}}>{dest.username}</Heading>
                                                      {/* <Text ml='0.5rem' fontFamily={'monospace'} color='#7C858D'>User description</Text> */}
                                                      <Text ml={{base:'-0.5rem',md:'',lg:'0.5rem',xl:'0.5rem'}} mt='rem'>{comm.comment_text}</Text>

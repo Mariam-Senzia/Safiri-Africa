@@ -136,7 +136,7 @@ const Profile = () => {
         <Flex >
         <Navbar display={{base:'none',xmd:'none',md:'none',lg:'flex',xl:'flex'}}/>
 
-        <Box borderWidth='px' width={{base:'60rem',sm:'60rem',md:'60rem',lg:'60rem',xl:'60rem',xxl:'66rem'}} ml={{base:'-2rem',sm:'',md:'rem',slg:'13rem',lg:'20rem',xl:'25rem',xxl:'30rem'}} mt={{base:'5rem',md:'',slg:'0.5rem',lg:'0.5rem',xl:'1'}} height=''>
+        <Box borderWidth='px' width={{base:'60rem',sm:'60rem',md:'60rem',lg:'60rem',xl:'60rem',xxl:'66rem'}} ml={{base:'-2rem',sm:'',md:'rem',slg:'13rem',lg:'20rem',xl:'25rem',dm:'27rem',xxl:'30rem'}} mt={{base:'5rem',md:'',slg:'0.5rem',lg:'0.5rem',xl:'1'}} height=''>
            
             <Flex ml='1.5rem' mt='rem' bgColor='' p='1rem' borderRadius='10px'>
                 <Avatar ml={{base:'rem',xmd:'1rem',md:'1.5rem',lg:'',xl:''}}  bgColor={randomColor} name={loggedInUser} size={{base:'xl',md:'2xl',lg:'2xl',xl:'2xl'}} src='' />
@@ -217,13 +217,13 @@ const Profile = () => {
                         },
                         }}
                     >
-                        <Button flex='1' variant='ghost' leftIcon={<BiLike color='#FF4500'/>} onClick={() => handleLikes(dest.id)} ml={{base:'-2.6rem',xxm:'-0.5rem',xm:'-0.2rem',sm:'-0.5rem',md:'',lg:'',xl:''}}>
+                        <Button flex='1' variant='ghost' leftIcon={<BiLike color='#FF4500'/>} onClick={() => handleLikes(dest.id)} ml={{base:'-1rem',xxm:'-0.5rem',xm:'-0.2rem',sm:'-0.5rem',md:'',lg:'',xl:''}}>
                             {destLikes.length} Likes
                         </Button>
-                        <Button flex='1' variant='ghost' leftIcon={<BiChat color='#FF4500'/>} onClick={() => handleComments(dest.id)}  ml={{base:'-3.5rem',xxm:'1rem',xm:'2rem',sm:'2rem',md:'',lg:'',xl:''}}>
+                        <Button flex='1' variant='ghost' leftIcon={<BiChat color='#FF4500'/>} onClick={() => handleComments(dest.id)}  ml={{base:'0.8rem',xxm:'1rem',xm:'2rem',sm:'2rem',md:'',lg:'',xl:''}}>
                             Comment
                         </Button>
-                        <Button flex='1' variant='ghost' leftIcon={<BiShare color='#FF4500'/>} ml={{base:'-2.5rem',xxm:'1rem',xm:'2rem',sm:'2rem',md:'',lg:'',xl:''}}>
+                        <Button flex='1' variant='ghost' leftIcon={<BiShare color='#FF4500'/>} ml={{base:'0.6rem',xxm:'1rem',xm:'2rem',sm:'2rem',md:'',lg:'',xl:''}}>
                           <ShareModal />
                         </Button>
                     </CardFooter>
@@ -238,11 +238,13 @@ const Profile = () => {
                                         )}
                                         <Flex mb='1rem' >
                                             <Avatar size='md' ml={{base:'0.1rem',xxm:'0.3rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',slg:'1rem',lg:'1.5rem',xl:'1.5rem'}} name={loggedInUser}/>
-                                            <Input placeholder='Add a comment...' borderRadius={'20px'} mt='0.2rem' ml='0.5rem' width={{base:'56.5vw',xxm:'60vw',xm:'61vw',sm:'63vw',md:'67vw',slg:'51vw',lg:'50vw',xl:'47.5vw'}} name='comment_text' value={formData.comment_text} onChange={handleCommentInput} focusBorderColor="#FF934F"/>
+                                            <Input placeholder='Add a comment...' borderRadius={'20px'} mt='0.2rem' ml='0.5rem' width={{base:'56.5vw',xxm:'60vw',xm:'61vw',sm:'63vw',md:'67vw',slg:'51vw',lg:'50vw',xl:'47.5vw',dm:'43.9rem'}} name='comment_text' value={formData.comment_text} onChange={handleCommentInput} focusBorderColor="#FF934F"/>
                                             <Button ml='0.5rem' bgColor='#FF934F' mt='0.2rem' type='submit' colorScheme="#48C9B0" color=''>Post</Button>
                                         </Flex>
                                     </form>
+
                                     <Heading size='' ml={{base:'0.1rem',xxm:'0.5rem',xm:'0.5rem',sm:'0.5rem',xmd:'3.5rem',md:'3.5rem',slg:'1rem',lg:'1.5rem',xl:'1.5rem'}}>Comments {comments.length}</Heading>
+
                                     {comments.map(comm => {
                                         return (
                                             <Flex key={comm.id} mt='1rem' mb='1rem'>
@@ -262,7 +264,7 @@ const Profile = () => {
                     })}
              </Box> ) : (
 
-            <Box bgColor='' borderWidth='2px' p={{base:'2rem',xxm:'3rem',xm:'4rem',sm:'5rem',xmd:'10rem',md:'rem',slg:'6rem',lg:'rem',xl:'5rem',xxl:'8.5rem'}} ml={{base:'2.5rem',xm:'rem',sm:'rem',xm:'3.5rem',md:'4.7rem',lg:'4.1rem',xl:'4rem',xxl:'4rem'}} borderRadius='10px' width={{base:'19rem',xxm:'21.5rem',xm:'23.5rem',sm:'25rem',xmd:'45rem',md:'46rem',slg:'43rem',lg:'51.5rem',xl:'56rem',xxl:'62rem'}}> 
+            <Box bgColor='' borderWidth='2px' p={{base:'2rem',xxm:'3rem',xm:'4rem',sm:'5rem',xmd:'10rem',md:'rem',slg:'6rem',lg:'rem',xl:'5rem',xxl:'8.5rem'}} ml={{base:'2.5rem',xm:'3.5rem',sm:'rem',md:'4.7rem',lg:'4.1rem',xl:'4rem',dm:'',xxl:'4rem'}} borderRadius='10px' width={{base:'19rem',xxm:'21.5rem',xm:'23.5rem',sm:'25rem',xmd:'45rem',md:'46rem',slg:'43rem',lg:'51.5rem',xl:'56rem',xxl:'62rem'}}> 
                 <Text ml={{base:'',xxm:'rem',xm:'rem',sm:'rem',md:'rem',lg:'rem',xl:'9rem'}}>No posts yet! Share your favorite destinations to inspire others.</Text>
                 <Box ml={{base:'5rem',xxm:'4rem',xm:'rem',sm:'rem',xmd:'6rem',md:'8rem',lg:'rem',xl:'12rem',xxl:'10rem'}} mt={{base:'',xm:'rem',sm:'rem',md:'rem',lg:'rem',xl:'-1rem'}}>
                 <Post />

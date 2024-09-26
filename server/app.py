@@ -35,7 +35,8 @@ cloudinary.config(
 # CRUD FOR DESTINATIONS
 class DestinationResource(Resource):
     def get(self):
-        destinations = Destination.query.all()
+        #Fetch the latest destinations first (sorted by id in descending order)
+        destinations = Destination.query.order_by(Destination.id.desc()).all()
 
         if destinations:
             return jsonify([{'id': destination.id, 'title':destination.title,'location':destination.location,'description': destination.description, 'type': destination.type, 'user_id': destination.user_id,'username': destination.username, 'url':destination.url,'region':destination.region} for destination in destinations])
@@ -71,7 +72,8 @@ class DestinationResource(Resource):
             db.session.add(new_Destination)
             db.session.commit()
 
-            return jsonify({'message':'Destination created successfully'})
+            # return jsonify({'message':'Destination created successfully'})
+            # return jsonify([{}])
         
         except Exception as e:
             print(e)
@@ -178,13 +180,14 @@ class UserLoginResource(Resource):
         user = User.query.filter_by(email=email).first()
 
         if user and bcrypt.check_password_hash(user.password,password):
-            access_token = create_access_token(identity = {'email':user.email})
-            refresh_token = create_refresh_token(identity = {'email':user.email})
+            access_token = create_access_token(identity = {'email':user.email, 'name':user.name})
+            refresh_token = create_refresh_token(identity = {'email':user.email, 'name':user.name})
 
             return jsonify({
                 'access_token':access_token,
                 'refresh_token': refresh_token,
-                'name':user.name
+                'name':user.name,
+                'profile_url': user.profile_url
             })
         
         else:
@@ -289,7 +292,8 @@ api.add_resource(LikesResource,'/likes' ,'/likes/<int:id>')
 # CRUD FOR COMMENTS
 class CommentResource(Resource):
     def get(self):
-        comments = Comment.query.all()
+        # Fetch the latest comments first (sorted by id in descending order)
+        comments = Comment.query.order_by(Comment.id.desc()).all()
 
         if comments:
             return jsonify([{'id': comment.id,'user_id': comment.user_id,'destination_id': comment.destination_id,'comment_text': comment.comment_text,'username': comment.username} for comment in comments])

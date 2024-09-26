@@ -21,7 +21,7 @@ const ExploreCountryDetails = () => {
         <>
         <Box bgImage='https://www.eastafricansafari.net/wp-content/uploads/2023/08/When-Is-the-Best-Time-to-Go-on-an-African-Safari.jpg' bgSize={'cover'} height={{base:'145vh',xxm:'120vh',xm:'115vh',sm:'120vh',xmd:'100vh',md:'',slg:'120vh',lg:'100vh',xl:'100vh'}} display='flex'>
         {clickedCountry.map((count) => {
-            return <Card borderWidth='1px' width={{base:'50rem',md:'60rem',slg:'35rem',lg:'50rem',xl:'50rem'}} ml={{base:'rem',md:'',slg:'14rem',lg:'15.5rem',xl:'21rem',xxl:'28rem'}} mt={{base:'3rem',xmd:'8rem',md:'10rem',slg:'1rem',lg:'3rem',xl:'3rem',xxl:'9rem'}} height={{base:'130vh',xxm:'105vh',xm:'100vh',sm:'105vh',xmd:'75vh',md:'70vh',slg:'115vh',lg:'91vh',xl:'90vh',xxl:'70vh'}} >
+            return <Card borderWidth='1px' width={{base:'50rem',md:'60rem',slg:'35rem',lg:'50rem',xl:'50rem'}} ml={{base:'rem',md:'',slg:'14rem',lg:'15.5rem',xl:'21rem',dm:'23rem',xxl:'28rem'}} mt={{base:'3rem',xmd:'8rem',md:'10rem',slg:'1rem',lg:'3rem',xl:'3rem',xxl:'9rem'}} height={{base:'130vh',xxm:'105vh',xm:'100vh',sm:'105vh',xmd:'75vh',md:'70vh',slg:'115vh',lg:'91vh',xl:'90vh',xxl:'70vh'}} >
             <CardHeader display='flex'>
               <Text fontSize='2xl'>{count.flag}</Text>
               <Heading size='lg' ml='1rem'>{count.name.common}</Heading>
@@ -34,7 +34,8 @@ const ExploreCountryDetails = () => {
                   <Heading size='xs' textTransform='uppercase'>
                     Map and Images
                   </Heading>
-                  <Link pt='2' fontSize='sm' href={count.maps.googleMaps} color='#F58549'>
+                  {/* open link in a new tab */}
+                  <Link pt='2' fontSize='sm' href={count.maps.googleMaps} rel="noreferrer" target={'_blank'} color='#F58549'>
                     {count.maps.googleMaps}
                   </Link>
                 </Box>

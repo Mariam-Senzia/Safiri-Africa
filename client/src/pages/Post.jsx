@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { Button,Modal,ModalOverlay,ModalContent,ModalHeader,ModalCloseButton,ModalBody,FormControl,FormLabel,Input,ModalFooter,useDisclosure, Textarea,Select,Flex,Avatar,Heading } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import useStore from "../store/UseStore";
@@ -6,7 +6,6 @@ import useStore from "../store/UseStore";
 
 const Post = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
     const {loggedInUser} = useStore();
@@ -19,8 +18,11 @@ const Post = () => {
       url:'',
       username:loggedInUser
     })
+    // const {profileUrl} = useStore();
 
     const navigate = useNavigate();
+
+    // console.log(profileUrl)
 
 
     const handleSubmit = (e) => {
@@ -43,6 +45,9 @@ const Post = () => {
         if(!res.ok){
           throw new Error('Network response was not ok');
         }
+        return res.json();
+      })
+      .then((dest) => {
         setFormData({
           title:'',
           location:'',
@@ -51,8 +56,9 @@ const Post = () => {
           region:'',
           url:'',
           username: loggedInUser
-        });
-        navigate('/postMessage')
+        });  
+
+        navigate('/postMessage');
       })
       // .then(data => {
       //   console.log(data);
@@ -77,7 +83,7 @@ const Post = () => {
 
     return (
         <>
-        <Button onClick={onOpen} bgColor={'#F58549'} mt={{base:'2.5rem',md:'',lg:'4.5rem',xl:''}} ml={{base:'',md:'',slg:'1rem',lg:'1.5rem',xl:'',xxl:'3rem'}} width={{base:'30vw',md:'19vw',lg:'19vw',xl:'19vw'}} colorScheme="#F58549" color=''>Create Post</Button>
+        <Button onClick={onOpen} bgColor={'#F58549'} mt={{base:'2.5rem',md:'',lg:'4rem',xl:''}} ml={{base:'',md:'',slg:'1rem',lg:'1.5rem',xl:'',xxl:'3rem'}} width={{base:'30vw',md:'19vw',lg:'19vw',xl:'19vw'}} colorScheme="#F58549" color=''>Create Post</Button>
 
       <Modal
         initialFocusRef={initialRef}
@@ -89,7 +95,7 @@ const Post = () => {
         <ModalContent mt='1rem' width='60rem'>
           <Flex mt='2rem' p='1rem'> 
             <Heading color='#FF4500' size='lg' ml='0.5rem'  mt='0.5rem'>Create New Post</Heading>
-            <Avatar size='md' ml='7rem' name={loggedInUser}/>
+            <Avatar size='md' ml='7rem' name={loggedInUser} />
           </Flex>
           <ModalCloseButton />
           <ModalBody pb={6}>

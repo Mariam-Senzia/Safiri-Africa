@@ -127,14 +127,14 @@ const SignUp = () => {
 
         <Flex>
         <Box display={{base:'none',md:'none',slg:'block',lg:'block',xl:'block'}}>
-          <Image src='https://i.pinimg.com/564x/6f/73/6e/6f736e3f397c68b5eb80f12306e3b66e.jpg' height={{slg:'100vh',lg:'100vh'}}  width={{slg:'31rem',lg:'90rem',xl:'60.5rem',xxl:'70rem'}} mt={{lg:''}} ml={{slg:'-0.5rem',lg:'-16rem'}} />
+          <Image src='https://i.pinimg.com/564x/6f/73/6e/6f736e3f397c68b5eb80f12306e3b66e.jpg' height={{slg:'100vh',lg:'100vh'}}  width={{slg:'31rem',lg:'90rem',xl:'60.5rem',dm:'63rem',xxl:'70rem'}} mt={{lg:''}} ml={{slg:'-0.5rem',lg:'-16rem'}} />
           <Flex ml={{base:'rem',md:'',slg:'8.5rem',lg:'-4.5rem',xl:'-2.5rem',xxl:'2rem'}} mt={{slg:'-10rem',lg:'-17rem',xl:'-17rem',xxl:'-17rem'}}>
                 <Image src='https://i.pinimg.com/736x/b7/d0/a6/b7d0a6e3daf09aa075e12ad0215acb89.jpg' height={{base:'40px',md:'',lg:'60px',xl:''}} width={{base:'40px',md:'',lg:'60px',xl:''}} borderRadius={'50%'} mt={{base:'',md:'',lg:'3.5rem',xl:''}}/>
                 <Heading mt={{base:'',md:'',lg:'4rem',xl:''}} ml={{base:'0.4rem',md:'',lg:'3px',xl:''}} color='white'>Safiri Africa</Heading>
             </Flex>
         </Box>
 
-        <Box p={{base:'1rem',xmd:'2rem',md:'2rem',lg:'2rem',xl:'2rem'}} borderWidth={{base:'3px',xxm:'3px',xm:'3px',sm:'3px',xmd:'3px',md:'3px',slg:'0',lg:'0',xl:''}} width={{base:'20rem',xxm:'22.5rem',xm:'24.4rem',sm:'25.9rem',xmd:'36rem',md:'40rem',slg:'24rem',lg:'',xl:'25rem'}} ml={{base:'-0.5rem',xxm:'rem',xmd:'5rem',xm:'rem',sm:'rem',md:'5.5rem',lg:'-10.5rem',xl:'-4rem',xxl:'-10rem'}} mr={{base:'',md:'',lg:'4rem',xl:'-2rem',xxl:'-15rem'}} mt={{base:'1.5rem',xxm:'10.9rem',xm:'14.5rem',sm:'14.5rem',xmd:'25rem',md:'34rem',slg:'4rem',lg:'9rem',xl:'4.5rem',xxl:'10rem'}} borderRadius={{base:'10px',md:'10px',lg:'',xl:''}}  bgColor='white' height={{base:'',md:'',lg:'',xl:'80vh'}}>
+        <Box p={{base:'1rem',xmd:'2rem',md:'2rem',lg:'2rem',xl:'2rem'}} borderWidth={{base:'3px',xxm:'3px',xm:'3px',sm:'3px',xmd:'3px',md:'3px',slg:'0',lg:'0',xl:''}} width={{base:'20rem',xxm:'22.5rem',xm:'24.4rem',sm:'100vw',xmd:'36rem',md:'40rem',slg:'24rem',lg:'',xl:'25rem'}} ml={{base:'-0.5rem',xxm:'rem',xmd:'5rem',xm:'rem',sm:'rem',md:'5.5rem',lg:'-10.5rem',xl:'-4rem',xxl:'-10rem'}} mr={{base:'',md:'',lg:'4rem',xl:'-2rem',xxl:'-15rem'}} mt={{base:'1.5rem',xxm:'10.9rem',xm:'14.5rem',sm:'18.5rem',xmd:'25rem',md:'34rem',slg:'4rem',lg:'9rem',xl:'4.5rem',xxl:'10rem'}} borderRadius={{base:'10px',md:'10px',lg:'',xl:''}}  bgColor='white' height={{base:'',md:'',lg:'',xl:'80vh'}}>
           <form onSubmit={handleSubmitForm}>
 
             <Heading textAlign={'center'} color='#F55E00' mt={{base:'',md:'',lg:'',xl:'4rem'}}>Sign Up</Heading>  

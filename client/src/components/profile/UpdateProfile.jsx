@@ -161,13 +161,13 @@ const UpdateProfile = () => {
         <Flex>
             <Navbar display={{base:'none',sm:'none',md:'',slg:'none',lg:'',xl:''}}/>
 
-            <Box borderWidth='3px' p='2rem' mt={{base:'-4rem',sm:'',md:'',slg:'1rem',lg:'2.8rem',xl:'1.5rem',xxl:'3rem'}}  width={{base:'60rem',sm:'60rem',md:'60rem',slg:'46.5rem',lg:'60rem',xl:'60rem',xxl:'76rem'}} ml={{base:'',sm:'',md:'-0.1rem',slg:'16rem',lg:'29rem',xl:'27rem'}} borderRadius='10px' height={{base:'',sm:'',md:'',slg:'100vh',lg:'',xl:'',xxl:'90vh'}}>
+            <Box borderWidth='3px' p='2rem' mt={{base:'-4rem',sm:'',md:'',slg:'1rem',lg:'0.5rem',xl:'1.5rem',dm:'2.3rem',xxl:'3rem'}}  width={{base:'60rem',sm:'60rem',md:'60rem',slg:'46.5rem',lg:'57rem',xl:'60rem',xxl:'76rem'}} ml={{base:'',sm:'',md:'-0.1rem',slg:'16rem',lg:'21rem',xl:'27rem',dm:'29.5rem'}} borderRadius='10px' height={{base:'',sm:'',md:'',slg:'100vh',lg:'',xl:'',dm:'90vh',xxl:'90vh'}}>
             {userDetails.map((user) => {
                 return <> <Box display={{base:'none',sm:'',md:'',slg:'block',lg:'block',xl:'block'}}> 
                 <form onSubmit={handleSubmit}>
                 <Heading size='xl' textAlign='center'>Profile</Heading>
 
-                <Flex mt='2rem' ml={{base:'',sm:'',xmd:'',md:'rem',slg:'17rem',lg:'24rem',xxl:'31.9rem'}} onClick={handleProfilePicture}>
+                <Flex mt='2rem' ml={{base:'',sm:'',xmd:'',md:'rem',slg:'17rem',lg:'22.5rem',xxl:'31.9rem'}} onClick={handleProfilePicture}>
                     {/* create a url from the selectedImage object */}
                     <Avatar size='2xl' src={selectedImage ? URL.createObjectURL(selectedImage) : user.profile_url}/>
                     <Tooltip label='Update profile picture' bgColor='#EBEBEB' color=''>
@@ -223,7 +223,7 @@ const UpdateProfile = () => {
                     </FormControl>
                 </Flex>
 
-                <Button type='submit' mt='2.5rem' mb='1rem' bgColor={'#F58549'} colorScheme="#F58549" color='' width='10vw' ml={{base:'46rem',sm:'46rem',md:'46rem',lg:'46rem',xl:'46rem',xxl:'61rem'}}>Save</Button>
+                <Button type='submit' mt='2.5rem' mb='1rem' bgColor={'#F58549'} colorScheme="#F58549" color='' width='10vw' ml={{base:'46rem',sm:'46rem',md:'46rem',lg:'44.5rem',xl:'46rem',xxl:'61rem'}}>Save</Button>
             </form>
             </Box>
 
@@ -245,7 +245,7 @@ const UpdateProfile = () => {
             <form onSubmit={handleSubmit}>
                 <Heading size='xl' textAlign='center' mt='1rem'>Profile</Heading>
 
-                <Flex mt={{base:'1rem',md:'1rem'}} ml={{base:'8rem',xmd:'19.7rem',md:'21.8rem'}} onClick={handleProfilePicture}>
+                <Flex mt={{base:'1rem',md:'1rem'}} ml={{base:'6rem',xxm:'7rem',xm:'8rem',sm:'8.8rem',xmd:'19.7rem',md:'21.5rem'}} onClick={handleProfilePicture}>
                     {/* create a url from the selectedImage object */}
                     <Avatar size='2xl' src={selectedImage ? URL.createObjectURL(selectedImage) : user.profile_url}/>
                     <Tooltip label='Update profile picture' bgColor='#EBEBEB' color=''>
@@ -301,7 +301,7 @@ const UpdateProfile = () => {
 
                 </Box>
 
-                <Button type='submit' mt='1rem' mb='1rem' bgColor={'#F58549'} colorScheme="#F58549" color='' width='30vw' ml={{base:'15.5rem',xmd:'32rem',md:'33rem'}}>Save</Button>
+                <Button type='submit' mt='1rem' mb='1rem' bgColor={'#F58549'} colorScheme="#F58549" color='' width='30vw' ml={{base:'12.5rem',xxm:'14rem',xm:'15.5rem',sm:'16.6rem',xmd:'32rem',md:'33rem'}}>Save</Button>
 
             </form>
             </Box>

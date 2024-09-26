@@ -10,5 +10,17 @@ const useStore = create((set) => ({
    randomColor: '',    //user profile
    setRandomColor: (color) => set({randomColor: color}),
 
+   accessToken: '' || localStorage.getItem('accessToken'),       // access token
+   setAccessToken: (token) => {
+      set({accessToken: token})
+      localStorage.setItem('accessToken', token)
+   },
+
+   profileUrl: '' || localStorage.getItem('profileUrl'),       // profile url
+   setProfileUrl: (url) => {
+      set({profileUrl: url})
+      localStorage.setItem('profileUrl', url)
+   }
+
 }));
 export default useStore;
