@@ -38,7 +38,8 @@ const SignIn = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    fetch('http://127.0.0.1:5555/login',{
+    // fetch('http://127.0.0.1:5555/login',{
+    fetch('https://safiri-africa-api.onrender.com/login',{
       method:'POST',
       headers: {
         'Content-Type':'application/json'

@@ -37,7 +37,8 @@ const Post = () => {
       formDataToSend.append('url',formData.url)
       formDataToSend.append('username',formData.username)
 
-      fetch('http://127.0.0.1:5555/destinations',{
+      // fetch('http://127.0.0.1:5555/destinations',{
+      fetch('https://safiri-africa-api.onrender.com/destinations',{
         method:'POST',
         body: formDataToSend,
       })

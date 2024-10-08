@@ -20,7 +20,8 @@ const SignUp = () => {
 
     // fetch users and update existing emails state
     useEffect(() => {
-        fetch('http://127.0.0.1:5555/users')
+        // fetch('http://127.0.0.1:5555/users')
+        fetch('https://safiri-africa-api.onrender.com/users')
         .then(resp => resp.json())
         .then(data => {
             const emails = data.map((user) => user.email)
@@ -84,7 +85,8 @@ const SignUp = () => {
 
         //validation before submission
         if(validateForm()){
-            fetch('http://127.0.0.1:5555/users',{
+            // fetch('http://127.0.0.1:5555/users',{
+            fetch('https://safiri-africa-api.onrender.com/users',{
                 method:'POST',
                 headers: {
                     'Content-Type':'application/json'

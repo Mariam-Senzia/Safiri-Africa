@@ -45,7 +45,8 @@ const UpdateProfile = () => {
     // console.log(countryNames)
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5555/userProfile')
+        // fetch('http://127.0.0.1:5555/userProfile')
+        fetch('https://safiri-africa-api.onrender.com/userProfile')
         .then((resp => resp.json()))
         .then((data) => {
             const filteredData = data.filter((detail) => detail.name === loggedInUser)
@@ -56,7 +57,8 @@ const UpdateProfile = () => {
 
     // fetch users and update existing emails state
     useEffect(() => {
-        fetch('http://127.0.0.1:5555/users')
+        // fetch('http://127.0.0.1:5555/users')
+        fetch('https://safiri-africa-api.onrender.com/users')
         .then(resp => resp.json())
         .then(data => {
             const emails = data.map((user) => user.email)
@@ -109,7 +111,8 @@ const UpdateProfile = () => {
         newData.append('city', formData.city);
         newData.append('profile_url',formData.profile_url)
 
-        fetch('http://127.0.0.1:5555/userProfile',{
+        // fetch('http://127.0.0.1:5555/userProfile',{
+        fetch('https://safiri-africa-api.onrender.com/userProfile',{
             method: 'PUT',
             body: newData,
         })

@@ -47,7 +47,8 @@ const Profile = () => {
     },[])
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5555/destinations')
+        // fetch('http://127.0.0.1:5555/destinations')
+        fetch('https://safiri-africa-api.onrender.com/destinations')
         .then(resp => resp.json())
         .then(data => setAllDestinations(data))
     },[]) 
@@ -61,7 +62,8 @@ const Profile = () => {
         const destination_id = destinationId;
         const number_of_likes = 1;
 
-        fetch('http://127.0.0.1:5555/likes', {
+        // fetch('http://127.0.0.1:5555/likes', {
+        fetch('https://safiri-africa-api.onrender.com/likes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -76,7 +78,8 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5555/likes')
+        // fetch('http://127.0.0.1:5555/likes')
+        fetch('https://safiri-africa-api.onrender.com/likes')
         .then(res => res.json())
         .then(data => setLikes(data))
     }, [])
@@ -101,7 +104,8 @@ const Profile = () => {
         const comment_text = formData.comment_text;
         const username = formData.username;
 
-        fetch('http://127.0.0.1:5555/comments', {
+        // fetch('http://127.0.0.1:5555/comments', {
+        fetch('https://safiri-africa-api.onrender.com/comments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -126,7 +130,8 @@ const Profile = () => {
     }
 
     useEffect(() => {
-            fetch('http://127.0.0.1:5555/comments')
+            // fetch('http://127.0.0.1:5555/comments')
+            fetch('https://safiri-africa-api.onrender.com/comments')
             .then(resp => resp.json())
             .then(data => setComments(data.filter(comm => comm.destination_id === activeDestination)))
             .catch(e => console.log(e));

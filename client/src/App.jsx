@@ -29,7 +29,8 @@ function App() {
 
  // Fetch destinations
   useEffect(() => {
-    fetch('http://127.0.0.1:5555/destinations')
+    // fetch('http://127.0.0.1:5555/destinations')
+    fetch('https://safiri-africa-api.onrender.com/destinations')
     .then((res) => res.json())
     .then((data) => setDestinations(data))
   },[])
@@ -120,16 +121,6 @@ function App() {
             </protectedRoute>
           }
         />
-          {/* <Route path={'/'} element={<Homepage />} />
-          <Route path={'/homeDefault'} element={<HomeDefault destinations={destinations} fetchDestinations={fetchDestinations}/> }/>
-          <Route path={'/explore'} element={<Explore />}/>
-          <Route path={'/profile'} element={<Profile />}/>
-          <Route path={'/signIn'} element={<SignIn />}/>
-          <Route path={'/exploreCountryDetails/:countryName'} element={<ExploreCountryDetails />}/>
-          <Route path={'/postMessage'} element={<PostMessage />} />
-          <Route path={'/signUp'} element={<SignUp />}/>
-          <Route path={'/postDestinations'} element={<PostDestinations />} />
-          <Route path={'/updateProfile'} element={<UpdateProfile />} /> */}
 
         </Routes>
       {/* </Router> */}
