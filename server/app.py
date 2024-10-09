@@ -78,7 +78,7 @@ class DestinationResource(Resource):
         
         except Exception as e:
             print(e)
-            return jsonify({'message':'Error ceating destination'})
+            return jsonify({'message':'Error creating destination'})
 
     def put(self,id):
         destination = Destination.query.get(id)

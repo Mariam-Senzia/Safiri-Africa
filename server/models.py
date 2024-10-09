@@ -18,8 +18,8 @@ class User(db.Model):
     city = db.Column(db.String)
 
     destinations = db.relationship('Destination', backref='user')
-    all_likes = db.relationship('Like', backref='user_like')
-    all_comments = db.relationship('Comment', backref='user_comment')
+    all_likes = db.relationship('Like', backref='user') 
+    all_comments = db.relationship('Comment', backref='user')
 
 
 class Destination(db.Model):
@@ -35,10 +35,8 @@ class Destination(db.Model):
     url = db.Column(db.String, nullable=False)
     region = db.Column(db.String, nullable=False)
 
-
-    user_destination = db.relationship('User',backref='destinations_user')
-    all_images = db.relationship('Media',backref='destination')
-    all_likes = db.relationship('Like',backref='destination')
+    all_images = db.relationship('Media', backref='destination')
+    all_likes = db.relationship('Like', backref='destination')
     all_comments = db.relationship('Comment', backref='destination')
 
 
@@ -47,10 +45,7 @@ class Media(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     media_url = db.Column(db.String, nullable=False)
-    destination_id = db.Column(db.Integer, db.ForeignKey('destinations.id'),nullable = False)
-
-    destination_media = db.relationship('Destination', backref='medias')
-
+    destination_id = db.Column(db.Integer, db.ForeignKey('destinations.id'), nullable=False)
 
 
 class Like(db.Model):
@@ -61,18 +56,12 @@ class Like(db.Model):
     destination_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
     number_of_likes = db.Column(db.Integer, default=0)
 
-    user_like = db.relationship('User', backref='user_likes')
-    destination_like = db.relationship('Destination', backref='destination_like')
-
 
 class Comment(db.Model):
-    __tablename__= 'comments'
+    __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     destination_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
     username = db.Column(db.String)
-    comment_text = db.Column(db.String) 
-
-    user_comment = db.relationship('User', backref='user_comments')
-    user_destination = db.relationship('Destination', backref='comments')
+    comment_text = db.Column(db.String)
