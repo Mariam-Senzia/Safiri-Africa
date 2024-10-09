@@ -72,4 +72,4 @@ class Comment(db.Model):
     comment_text = db.Column(db.String) 
 
     user_comment = db.relationship('User', backref='user_comments')
-    user_destination = db.relationship('Destination', backref='user_destinations')
+    user_destination = db.relationship('Destination', backref='user_comments')
