@@ -157,7 +157,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                     src={dest.url}
                                     alt={dest.title}
                                     width={{base:'',md:'',lg:'',xl:''}}
-                                    height={{base:'',md:'',slg:'45vh',lg:'45vh',xl:''}}
+                                    height={{base:'',md:'',slg:'50vh',lg:'',xl:''}}
                                 />
                             ) : (
                                 <AspectRatio maxW={{base:'',md:'',lg:'800px',xl:'800px'}} height='47vh' ratio={1}>

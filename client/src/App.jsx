@@ -11,7 +11,6 @@ import PostMessage from './components/home/PostMessage'
 import SignUp from './components/SignUp/SignUp'
 import PostDestinations from './components/home/PostDestinations'
 import UpdateProfile from './components/profile/UpdateProfile'
-import FilteredDestinations from './components/home/FilteredDestinations'
 import theme from './theme/customBreakpoints'
 import protectedRoute from './routeprotection/protectedRoute'
 // import { useNavigate } from 'react-router-dom'
@@ -34,6 +33,7 @@ function App() {
     .then((res) => res.json())
     .then((data) => setDestinations(data))
   },[])
+  console.log(destinations)
 
   useEffect(() => {
     if(accessToken){
