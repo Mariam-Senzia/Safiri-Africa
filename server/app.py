@@ -140,7 +140,7 @@ class UserResource(Resource):
                 return jsonify({'error': 'User with same email already exists'})
 
 
-            hashedPassword = bcrypt.generate_password_hash(password)
+            hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
 
             newUser = User(
                 name = name,
