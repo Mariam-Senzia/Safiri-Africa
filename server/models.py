@@ -18,8 +18,9 @@ class User(db.Model):
     city = db.Column(db.String)
 
     destinations = db.relationship('Destination', backref='user')
-    all_likes = db.relationship('Like', backref='user_likes')
-    all_comments = db.relationship('Comment', backref='user_comments')
+    all_likes = db.relationship('Like', backref='user_like')
+    all_comments = db.relationship('Comment', backref='user_comment')
+
 
 class Destination(db.Model):
     __tablename__ = 'destinations'
@@ -51,6 +52,7 @@ class Media(db.Model):
     destination_media = db.relationship('Destination', backref='medias')
 
 
+
 class Like(db.Model):
     __tablename__ = 'likes'
 
@@ -62,6 +64,7 @@ class Like(db.Model):
     user_like = db.relationship('User', backref='user_likes')
     destination_like = db.relationship('Destination', backref='destination_like')
 
+
 class Comment(db.Model):
     __tablename__= 'comments'
 
@@ -72,4 +75,4 @@ class Comment(db.Model):
     comment_text = db.Column(db.String) 
 
     user_comment = db.relationship('User', backref='user_comments')
-    user_destination = db.relationship('Destination', backref='user_comments')
+    user_destination = db.relationship('Destination', backref='comments')
