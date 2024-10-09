@@ -18,7 +18,7 @@ app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///app.db'
 app.config['SQLALCHEMY_DATABASE_URI']= os.getenv("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
-app.config['JWT_SECRET_KEY'] = "e27c00e982d1d07709adb9eb"
+app.config['JWT_SECRET_KEY'] = os.getenv("JWT_SECRET_KEY")
 
 migrate = Migrate(app, db)
 db.init_app(app)
