@@ -102,13 +102,13 @@ const Post = () => {
           <ModalBody pb={6}>
             <form onSubmit={handleSubmit}>
             <FormControl isRequired>
-              <FormLabel>Title</FormLabel>
-              <Input ref={initialRef} placeholder='Destination title' focusBorderColor="#FF4500" name='title' value={formData.title} onChange={handleChange}/>
+              <FormLabel>Destination Title</FormLabel>
+              <Input ref={initialRef} placeholder='Title' focusBorderColor="#FF4500" name='title' value={formData.title} onChange={handleChange}/>
             </FormControl>
 
             <FormControl mt={4} isRequired>
-              <FormLabel>Location</FormLabel>
-              <Input placeholder='Location' focusBorderColor="#FF4500" name='location' value={formData.location} onChange={handleChange}/>
+              <FormLabel>Location(Country)</FormLabel>
+              <Input placeholder='Country' focusBorderColor="#FF4500" name='location' value={formData.location} onChange={handleChange}/>
             </FormControl>
 
             <FormControl mt={4} isRequired>

@@ -80,7 +80,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
     const handleSubmitComment = (e, destinationId) => {
         e.preventDefault();
 
-        const user_id = '';
+        const user_id = userId;
         const destination_id = destinationId;
         const comment_text = formData.comment_text;
         const username = formData.username;
@@ -161,7 +161,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                     height={{base:'',md:'',slg:'50vh',lg:'',xl:''}}
                                 />
                             ) : (
-                                <AspectRatio maxW={{base:'',md:'',lg:'800px',xl:'800px'}} height='47vh' ratio={1}>
+                                <AspectRatio maxW={{base:'',md:'',lg:'',xl:''}} height='47vh' ratio={1}>
                                     <video
                                         title={dest.title}
                                         src={dest.url}
