@@ -16,6 +16,12 @@ const useStore = create((set) => ({
       localStorage.setItem('accessToken', token)
    },
 
+   userId: '' || localStorage.getItem('userId'),       // user id
+   setUserId: (id) => {
+      set({'userId': id})
+      localStorage.setItem('userId', id)
+   },
+
    profileUrl: '' || localStorage.getItem('profileUrl'),       // profile url
    setProfileUrl: (url) => {
       set({profileUrl: url})

@@ -133,7 +133,7 @@ const Post = () => {
                 <option>Western Africa</option>
                 <option>Central Africa</option>
                 <option>East Africa</option>
-                <option>Souther Africa</option>
+                <option>Southern Africa</option>
               </Select>
             </FormControl>
 

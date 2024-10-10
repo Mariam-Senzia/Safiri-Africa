@@ -13,6 +13,7 @@ const SignIn = () => {
   const [showPassword, setShowpassword] = useState(false);
   const {loggedInUser,setLoggedInUser} = useStore();
   const {accessToken, setAccessToken} = useStore();
+  const {userId, setUserId} = useStore();
   const [errorMessage, setErrorMessage] = useState('');
   const [profileUrl, setProfileUrl] = useState('')
 
@@ -61,8 +62,9 @@ const SignIn = () => {
       setLoggedInUser(data.name)
       setAccessToken(data.access_token)
       setProfileUrl(data.profile_url)
+      setUserId(data.user_id)
       // console.log(data)
-      // console.log(data.profile_url)
+      // console.log(data.user_id)
 
       setFormData({
         email:'',

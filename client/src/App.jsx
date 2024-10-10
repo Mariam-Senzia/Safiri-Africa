@@ -33,7 +33,7 @@ function App() {
     .then((res) => res.json())
     .then((data) => setDestinations(data))
   },[])
-  console.log(destinations)
+  // console.log(destinations)
 
   useEffect(() => {
     if(accessToken){
@@ -41,8 +41,8 @@ function App() {
       const decodedToken = jwtDecode(accessToken);
       const tokenUsername = decodedToken.sub.name;
 
-      console.log(decodedToken)
-      console.log(tokenUsername)
+      // console.log(decodedToken)
+      // console.log(tokenUsername)
 
       if(tokenUsername === loggedInUser){
         navigate('/homeDefault')

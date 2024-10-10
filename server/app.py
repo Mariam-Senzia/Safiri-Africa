@@ -188,7 +188,8 @@ class UserLoginResource(Resource):
                 'access_token':access_token,
                 'refresh_token': refresh_token,
                 'name':user.name,
-                'profile_url': user.profile_url
+                'profile_url': user.profile_url,
+                'user_id': user.id
             })
         
         else:

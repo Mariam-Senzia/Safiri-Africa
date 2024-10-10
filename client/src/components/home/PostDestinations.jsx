@@ -17,12 +17,13 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
     });
     const [comments, setComments] = useState([]);
     const {randomColor} = useStore();
+    const {userId} = useStore();
     const [alertStatus,setAlertStatus] = useState(false);
     
 
     // likes
     const handleLikes = (destinationId) => {
-        const user_id = '';
+        const user_id = userId;
         const destination_id = destinationId;
         const number_of_likes = 1;
 
