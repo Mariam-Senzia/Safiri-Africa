@@ -126,19 +126,19 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
     return (
         <>  
             {(!filteredDestination || filteredDestination.length === 0) ? (    // main destinations displayed
-            <Box display='flex' flexDirection='column' gap={{base:'4',md:'',lg:'4',xl:'4'}} ml={{base:'',md:'',slg:'15rem',lg:'19.6rem',xl:'22.7rem',dm:'24rem',xxl:'25.9rem'}} mt={{base:'1.5rem',md:'1.5rem',slg:'0.5rem',lg:'0.5rem',xl:'0.5rem'}} mb='1rem'>
+            <Box display='flex' flexDirection='column' gap={{base:'4',md:'',lg:'4',xl:'4'}} ml={{base:'',md:'',slg:'15rem',lg:'19.6rem',xl:'22.7rem',dm:'28rem',xxl:'25.9rem'}} mt={{base:'1.5rem',md:'1.5rem',slg:'0.5rem',lg:'0.5rem',xl:'0.5rem'}} mb='1rem'>
                 {destinations.map((dest) => {
                     const destLikes = likes.filter((like) => like.destination_id === dest.id);
 
                     return (
-                        <Card width={{base:'',md:'',slg:'50vw',lg:'50vw',xl:'49vw'}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth={{base:'2px',md:'2px',lg:'1px',xl:'1px'}} borderColor='' key={dest.id} mt={{base:'rem',md:'',lg:'',xl:'0.3rem'}}>
+                        <Card width={{base:'',md:'',slg:'50vw',lg:'50vw',xl:'49vw',dm:'48.6vw'}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth={{base:'2px',md:'2px',lg:'1px',xl:'1px'}} borderColor='' key={dest.id} mt={{base:'rem',md:'',lg:'',xl:'0.3rem'}} ml={{dm:'-5rem'}}>
                             <CardHeader>
                                 <Flex spacing='4'>
                                     <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap' ml={{base:'-0.5rem',md:'',lg:'',xl:''}}>
                                         <Avatar name={dest.username} bgColor={randomColor} />
                                         <Box>
                                             <Heading size='sm'>{dest.username}</Heading>
-                                            <Text width={{base:'65vw',xxm:'70vw',xm:'70vw',sm:'70vw',md:'80vw',slg:'40vw',lg:'40vw',xl:'40vw'}}>{dest.location}</Text>
+                                            <Text width={{base:'65vw',xxm:'70vw',xm:'70vw',sm:'70vw',md:'80vw',slg:'40vw',lg:'40vw',xl:'40vw'}}>{dest.title},{' '}{dest.location}</Text>
                                         </Box>
                                     </Flex>
                                     {/* <IconButton
@@ -230,7 +230,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                         const destLikes = likes.filter((like) => like.destination_id === dest.id)
 
                         return (
-                            <Card width={{base:'',md:'',slg:'32rem',lg:'50vw',xl:'49vw'}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth={{base:'2px',md:'2px',lg:'1px',xl:'1px'}} borderColor='' key={dest.name} mt={{base:'rem',md:'1rem',lg:'',xl:'0.3rem'}}>
+                            <Card width={{base:'',md:'',slg:'32rem',lg:'50vw',xl:'49vw',dm:'48.6vw'}} height={{base:'',md:'',lg:'vh',xl:''}} borderWidth={{base:'2px',md:'2px',lg:'1px',xl:'1px'}} borderColor='' key={dest.name} mt={{base:'rem',md:'1rem',lg:'',xl:'0.3rem'}} ml={{dm:'-5rem'}}>
                                 <CardHeader>
                                     <Flex spacing='4'>
                                         <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap' ml={{base:'-0.5rem',md:'',lg:'',xl:''}}>
@@ -260,7 +260,7 @@ const PostDestinations = ({ destinations, filteredDestination }) => {
                                         height={{base:'',md:'',slg:'45vh',lg:'45vh',xl:''}}
                                     />
                                 ) : (
-                                    <AspectRatio maxW={{base:'',md:'',lg:'800px',xl:'800px'}} height='47vh' ratio={1}>
+                                    <AspectRatio maxW={{base:'',md:'',lg:'',xl:''}} height='47vh' ratio={1}>
                                         <video
                                             title={dest.title}
                                             src={dest.url}

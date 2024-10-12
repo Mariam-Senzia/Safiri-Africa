@@ -12,10 +12,10 @@ const HomeDefault = ({destinations}) => {
     const filteredDestinations = location.state?.filteredDestination;
     // console.log(filteredDestinations)
     return (
-        <Flex display={{base:'block',md:'',lg:'flex',xl:'flex'}}>
+        <Flex display={{base:'block',md:'',lg:'flex',xl:'flex',dm:'flex',xxl:'flex'}}>
             <Navbar />
-            <FilteredDestinations destinations={destinations} order={{base:1,md:1,lg:2,xl:2}} />
-            <PostDestinations destinations={destinations} filteredDestination={filteredDestinations} order={{base:2,md:2,lg:1,xl:1}}/>
+            <FilteredDestinations destinations={destinations} order={{base:1,md:1,lg:2,xl:2,dm:'2'}}/>
+            <PostDestinations destinations={destinations} filteredDestination={filteredDestinations} order={{base:2,md:2,lg:1,xl:1,dm:'1'}}/>
           
         </Flex>
     )

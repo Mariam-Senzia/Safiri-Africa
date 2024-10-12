@@ -99,16 +99,17 @@ const SignIn = () => {
           // </Alert>
         )}
 
-        <Flex>
-        <Box display={{base:'none',md:'none',slg:'block',lg:'block',xl:'block'}}>
-          <Image src='https://i.pinimg.com/564x/6f/73/6e/6f736e3f397c68b5eb80f12306e3b66e.jpg' height={{slg:'100vh',lg:'100vh'}} width={{slg:'33rem',lg:'90rem',xl:'60.5rem',dm:'63rem',xxl:'75rem'}} mt={{lg:'0rem'}} ml={{slg:'-0.5rem',lg:'-16rem',xl:'-16rem',xxl:'-16rem'}} />
+        {/* larger devices */}
+        <Flex justifyContent='space-between'>
+        <Box display={{base:'none',md:'none',slg:'block',lg:'block',xl:'block',dm:'block',xxl:'block'}}>
+          <Image src='https://i.pinimg.com/564x/6f/73/6e/6f736e3f397c68b5eb80f12306e3b66e.jpg' height={{slg:'100vh',lg:'100vh'}} width={{slg:'33rem',lg:'90rem',xl:'60.5rem',dm:'',xxl:'75rem'}} mt={{lg:'0rem'}} ml={{slg:'-0.5rem',lg:'-16rem',xl:'-16rem',dm:'-16rem',xxl:'-16rem'}} />
           <Flex ml={{base:'rem',md:'',slg:'8rem',lg:'-3.5rem',xl:'-1.5rem',xxl:'3rem'}} mt={{slg:'-10rem',lg:'-17rem',xl:'-17rem',xxl:'-17rem'}}>
                 <Image src='https://i.pinimg.com/736x/b7/d0/a6/b7d0a6e3daf09aa075e12ad0215acb89.jpg' height={{base:'40px',md:'',lg:'60px',xl:''}} width={{base:'40px',md:'',lg:'60px',xl:''}} borderRadius={'50%'} mt={{base:'',md:'',lg:'3.5rem',xl:''}}/>
                 <Heading mt={{base:'',md:'',slg:'',lg:'4rem',xl:''}} ml={{base:'0.4rem',md:'',lg:'3px',xl:''}} color='white'>Safiri Africa</Heading>
             </Flex>
         </Box>
 
-        <Box p={{base:'1rem',xmd:'2rem',md:'2rem',lg:'2rem',xl:'2rem'}} borderWidth={{base:'3px',xxm:'3px',xm:'3px',sm:'3px',xmd:'3px',md:'3px',slg:'0',lg:'0',xl:'0'}} width={{base:'20rem',xxm:'21.6rem',xm:'23.3rem',sm:'100vw',xmd:'37rem',md:'40rem',slg:'24rem',lg:'',xl:'25rem'}} ml={{base:'-0.5rem',xxm:'0rem',xm:'0rem',sm:'-0.5rem',xmd:'5rem',md:'5.5rem',slg:'rem',lg:'-11rem',xl:'-5rem',dm:'-4rem',xxl:'-10rem'}} mr={{base:'',md:'',slg:'4rem',lg:'4rem',xl:'-5rem',xxl:'-14rem'}} mt={{base:'5.4rem',xxm:'14.9rem',xm:'19rem',sm:'22.5rem',xmd:'29rem',md:'33rem',slg:'3.5rem',lg:'9rem',xl:'4.5rem',xxl:'11rem'}} borderRadius={{base:'10px',md:'10px',lg:'',xl:'0px'}}  bgColor='white' height={{base:'',md:'45vh',lg:'',xl:'80vh'}}>
+        <Box p={{base:'1rem',xmd:'2rem',md:'2rem',lg:'2rem',xl:'2rem'}} borderWidth={{base:'3px',xxm:'3px',xm:'3px',sm:'3px',xmd:'3px',md:'3px',slg:'0',lg:'0',xl:'0'}} width={{base:'20rem',xxm:'21.6rem',xm:'23.3rem',sm:'100vw',xmd:'37rem',md:'40rem',slg:'24rem',lg:'',xl:'25rem'}} ml={{base:'-0.5rem',xxm:'0rem',xm:'0rem',sm:'-0.5rem',xmd:'5rem',md:'5.5rem',slg:'rem',lg:'-11rem',xl:'-5rem',dm:'',xxl:'-10rem'}} mr={{base:'',md:'',slg:'4rem',lg:'4rem',xl:'-5rem',dm:'',xxl:'-14rem'}} mt={{base:'5.4rem',xxm:'14.9rem',xm:'19rem',sm:'22.5rem',xmd:'29rem',md:'33rem',slg:'3.5rem',lg:'9rem',xl:'4.5rem',xxl:'11rem'}} borderRadius={{base:'10px',md:'10px',lg:'',xl:'0px'}}  bgColor='white' height={{base:'',md:'45vh',lg:'',xl:'80vh'}}>
           <form onSubmit={handleLogin}>
 
             <Heading textAlign={'center'} color='#F55E00' mt={{base:'',md:'1rem',lg:'',xl:'4rem'}}>Sign In</Heading>    

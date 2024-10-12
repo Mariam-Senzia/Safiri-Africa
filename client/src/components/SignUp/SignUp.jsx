@@ -119,7 +119,7 @@ const SignUp = () => {
     return(
         <Flex backgroundImage={{base:'https://i.pinimg.com/564x/6f/73/6e/6f736e3f397c68b5eb80f12306e3b66e.jpg',md:'https://i.pinimg.com/564x/6f/73/6e/6f736e3f397c68b5eb80f12306e3b66e.jpg',slg:'none',lg:'none',xl:'none'}} backgroundSize='cover' height={{base:'100vh',md:'',lg:'',xl:'100vh'}} backgroundPosition={{base:'center',md:'center',lg:'',xl:''}} bgColor={{base:'none',md:'none',lg:'',xl:''}}>
             {/* <Navbar /> */}
-        <Box ml={{base:'0.5rem',md:'',lg:'16rem',xl:'16rem'}} width={{base:'',md:'',lg:'70rem',xl:'70rem'}}>   
+        <Box ml={{base:'0.5rem',md:'',lg:'16rem',xl:'16rem',dm:''}} width={{base:'',md:'',lg:'70rem',xl:'70rem'}}>   
         {alertStatus && (
            <Alert status='success' width={{base:'20rem',xxm:'22.5rem',xm:'23.5rem',sm:'24.5rem',md:'25rem',lg:'30rem',xl:'30rem'}} ml={{base:'-0.5rem',xxm:'rem',xm:'0.1rem',sm:'rem',xmd:'11rem',md:'13rem',slg:'36rem',lg:'30rem',xl:'37rem',xxl:'50rem'}} mr={{base:'',md:'',lg:'',xl:''}} mt={{base:'1.5rem',xmd:'20rem',md:'25rem',slg:'2rem',lg:'1rem',xl:'1rem'}} mb={{base:'-5rem',xmd:'-25rem',md:'-28rem',slg:'-5rem',lg:'-3rem',xl:'-4rem'}} borderRadius='10px'>
             <AlertIcon ml='-0.7rem' />
@@ -127,7 +127,7 @@ const SignUp = () => {
            </Alert> 
         )}
 
-        <Flex>
+        <Flex justifyContent='space-between'>
         <Box display={{base:'none',md:'none',slg:'block',lg:'block',xl:'block'}}>
           <Image src='https://i.pinimg.com/564x/6f/73/6e/6f736e3f397c68b5eb80f12306e3b66e.jpg' height={{slg:'100vh',lg:'100vh'}}  width={{slg:'31rem',lg:'90rem',xl:'60.5rem',dm:'63rem',xxl:'70rem'}} mt={{lg:''}} ml={{slg:'-0.5rem',lg:'-16rem'}} />
           <Flex ml={{base:'rem',md:'',slg:'8.5rem',lg:'-4.5rem',xl:'-2.5rem',xxl:'2rem'}} mt={{slg:'-10rem',lg:'-17rem',xl:'-17rem',xxl:'-17rem'}}>
@@ -136,7 +136,7 @@ const SignUp = () => {
             </Flex>
         </Box>
 
-        <Box p={{base:'1rem',xmd:'2rem',md:'2rem',lg:'2rem',xl:'2rem'}} borderWidth={{base:'3px',xxm:'3px',xm:'3px',sm:'3px',xmd:'3px',md:'3px',slg:'0',lg:'0',xl:''}} width={{base:'20rem',xxm:'22.5rem',xm:'24.4rem',sm:'100vw',xmd:'36rem',md:'40rem',slg:'24rem',lg:'',xl:'25rem'}} ml={{base:'-0.5rem',xxm:'rem',xmd:'5rem',xm:'rem',sm:'rem',md:'5.5rem',lg:'-10.5rem',xl:'-4rem',xxl:'-10rem'}} mr={{base:'',md:'',lg:'4rem',xl:'-2rem',xxl:'-15rem'}} mt={{base:'1.5rem',xxm:'10.9rem',xm:'14.5rem',sm:'18.5rem',xmd:'25rem',md:'34rem',slg:'4rem',lg:'9rem',xl:'4.5rem',xxl:'10rem'}} borderRadius={{base:'10px',md:'10px',lg:'',xl:''}}  bgColor='white' height={{base:'',md:'',lg:'',xl:'80vh'}}>
+        <Box p={{base:'1rem',xmd:'2rem',md:'2rem',lg:'2rem',xl:'2rem'}} borderWidth={{base:'3px',xxm:'3px',xm:'3px',sm:'3px',xmd:'3px',md:'3px',slg:'0',lg:'0',xl:''}} width={{base:'20rem',xxm:'22.5rem',xm:'24.4rem',sm:'100vw',xmd:'36rem',md:'40rem',slg:'24rem',lg:'',xl:'25rem',dm:''}} ml={{base:'-0.5rem',xxm:'rem',xmd:'5rem',xm:'rem',sm:'rem',md:'5.5rem',lg:'-10.5rem',xl:'-4rem',dm:'',xxl:'-10rem'}} mr={{base:'',md:'',lg:'4rem',xl:'-2rem',xxl:'-15rem'}} mt={{base:'1.5rem',xxm:'10.9rem',xm:'14.5rem',sm:'18.5rem',xmd:'25rem',md:'34rem',slg:'4rem',lg:'9rem',xl:'4.5rem',xxl:'10rem'}} borderRadius={{base:'10px',md:'10px',lg:'',xl:''}}  bgColor='white' height={{base:'',md:'',lg:'',xl:'80vh'}}>
           <form onSubmit={handleSubmitForm}>
 
             <Heading textAlign={'center'} color='#F55E00' mt={{base:'',md:'',lg:'',xl:'4rem'}}>Sign Up</Heading>  

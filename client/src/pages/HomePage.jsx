@@ -17,7 +17,7 @@ const Homepage = () => {
             <Flex ml={{base:'0.2rem',xxm:'0.4rem',xm:'0.7rem',sm:'1rem',xmd:'4rem',md:'',slg:'3rem',lg:'4.5rem',xl:'6rem',dm:'6.9rem',xxl:'12rem',xxxl:''}} mt={{base:'1rem',md:'2rem',lg:'-2rem',xl:'-2rem'}}>
                 <Image src='https://i.pinimg.com/736x/b7/d0/a6/b7d0a6e3daf09aa075e12ad0215acb89.jpg' height={{base:'40px',md:'',lg:'60px',xl:''}} width={{base:'40px',md:'',lg:'60px',xl:''}} borderRadius={'50%'} mt={{base:'',md:'',lg:'3.5rem',xl:''}}/>
                 <Heading mt={{base:'',xmd:'rem',md:'rem',lg:'4rem',xl:''}} mr={{base:'1.1rem',xxm:'1.3rem',xm:'2.7rem',sm:'3.7rem',md:'',lg:'px',xl:''}} ml={{base:'',xxm:'',xm:'',sm:'',xmd:'0.4rem',md:'',slg:'0.3rem',lg:'5px',xl:''}} color='#FF4500'>Safiri Africa</Heading>
-                <Button mt={{base:'rem',md:'',lg:'4.5rem',xl:'4.5rem'}} width={{base:'',md:'',lg:'10rem',xl:'10rem'}} ml={{base:'rem',xxm:'rem',xm:'',sm:'',xmd:'16rem',md:'19rem',slg:'35rem',lg:'44rem',xl:'55rem',dm:'54.5rem'}} colorScheme="#F58549" bgColor='#F58549' onClick={handleLogin} borderRadius='50px'>Sign In</Button>
+                <Button mt={{base:'rem',md:'',lg:'4.5rem',xl:'4.5rem'}} width={{base:'',md:'',lg:'10rem',xl:'10rem'}} ml={{base:'rem',xxm:'rem',xm:'',sm:'',xmd:'16rem',md:'19rem',slg:'35rem',lg:'44rem',xl:'55rem',dm:'63.5rem'}} colorScheme="#F58549" bgColor='#F58549' onClick={handleLogin} borderRadius='50px'>Sign In</Button>
             </Flex>
 
             {/* background image for mobile/tablet devices */}
@@ -30,14 +30,15 @@ const Homepage = () => {
                </Box> 
 
               <Box display={{base:'none',md:'none',slg:'flex',lg:'flex',xl:'flex'}} mt={{base:'15rem',md:'',lg:'',xl:'0rem'}} ml={{base:'-25rem',md:'1rem',slg:'6.5rem',lg:'7.5rem',xl:'10.5rem',dm:'11.9rem'}}>
-                <Image src='https://images.unsplash.com/photo-1623951578056-5082d34a9859?q=80&w=1970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' height={{base:'',md:'400px',slg:'350px',lg:'',xl:'400px',xxl:'500px'}} width={{base:'170px',md:'200px',lg:'230px',xl:'290px',xxl:''}} ml={{base:'',md:'',lg:'',xl:'-1rem'}} mt={{base:'rem',md:'',slg:'-7rem',lg:'-3.5rem',xl:'8rem'}} objectFit='cover' borderRadius='50px' />
+                <Image src='https://images.unsplash.com/photo-1623951578056-5082d34a9859?q=80&w=1970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' height={{base:'',md:'400px',slg:'350px',lg:'',xl:'400px',xxl:'500px'}} width={{base:'170px',md:'200px',lg:'230px',xl:'290px',dm:'364px',xxl:''}} ml={{base:'',md:'',lg:'',xl:'-1rem'}} mt={{base:'rem',md:'',slg:'-7rem',lg:'-3.5rem',xl:'8rem'}} objectFit='cover' borderRadius='50px' />
 
-                <Image src='https://images.unsplash.com/photo-1623745493581-2f7b3d0d2140?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' height={{base:'300px',md:'400px',slg:'350px',lg:'',xl:'400px',xxl:'500px'}} width={{base:'170px',md:'200px',lg:'230px',xl:'290px',xxl:''}} ml={{base:'1rem',md:'',lg:'4rem',xl:'4rem'}} mt={{base:'rem',md:'-10rem',slg:'-14rem',lg:'-12rem',xl:'0.1rem',xxl:'-2rem'}} objectFit='cover' borderRadius='50px'/>
+                <Image src='https://images.unsplash.com/photo-1623745493581-2f7b3d0d2140?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' height={{base:'300px',md:'400px',slg:'350px',lg:'',xl:'400px',xxl:'500px'}} width={{base:'170px',md:'200px',lg:'230px',xl:'290px',dm:'364px',xxl:''}} ml={{base:'1rem',md:'',lg:'4rem',xl:'4rem'}} mt={{base:'rem',md:'-10rem',slg:'-14rem',lg:'-12rem',xl:'0.1rem',xxl:'-2rem'}} objectFit='cover' borderRadius='50px'/>
 
                </Box>
             </Flex>
             </Box>
 
+            {/* like comment share icons */}
             <Box mt={{base:'3.5rem',md:'',lg:'-2rem',xl:'6rem'}} textAlign='center' ml='rem' mb={{base:'-2.5rem',md:'',lg:'',xl:''}} bgColor='#F5F5F5' p='1rem' width={{base:'',xxm:'',xm:'',sm:'',md:'',lg:'',xl:''}}>
                 <Flex justifyContent='space-between' mt='2rem'>
                     <Text ml={{base:'0.5rem',xmd:'4rem',md:'5.5rem',lg:'8rem',xl:'8rem',dm:'9.6rem',xxl:'15rem'}}>Like</Text>

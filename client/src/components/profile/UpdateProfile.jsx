@@ -164,7 +164,7 @@ const UpdateProfile = () => {
         <Flex>
             <Navbar display={{base:'none',sm:'none',md:'',slg:'none',lg:'',xl:''}}/>
 
-            <Box borderWidth='3px' p='2rem' mt={{base:'-4rem',sm:'',md:'',slg:'1rem',lg:'0.5rem',xl:'1.5rem',dm:'2.3rem',xxl:'3rem'}}  width={{base:'60rem',sm:'60rem',md:'60rem',slg:'46.5rem',lg:'57rem',xl:'60rem',xxl:'76rem'}} ml={{base:'',sm:'',md:'-0.1rem',slg:'16rem',lg:'21rem',xl:'27rem',dm:'29.5rem'}} borderRadius='10px' height={{base:'',sm:'',md:'',slg:'100vh',lg:'',xl:'',dm:'90vh',xxl:'90vh'}}>
+            <Box borderWidth='3px' p='2rem' mt={{base:'-4rem',sm:'',md:'',slg:'1rem',lg:'0.5rem',xl:'1.5rem',dm:'2.3rem',xxl:'3rem'}}  width={{base:'60rem',sm:'60rem',md:'60rem',slg:'46.5rem',lg:'57rem',xl:'60rem',xxl:'76rem'}} ml={{base:'',sm:'',md:'-0.1rem',slg:'16rem',lg:'21rem',xl:'27rem',dm:'33.5rem'}} borderRadius='10px' height={{base:'',sm:'',md:'',slg:'100vh',lg:'',xl:'',dm:'90vh',xxl:'90vh'}}>
             {userDetails.map((user) => {
                 return <> <Box display={{base:'none',sm:'',md:'',slg:'block',lg:'block',xl:'block'}}> 
                 <form onSubmit={handleSubmit}>

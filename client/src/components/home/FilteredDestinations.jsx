@@ -25,10 +25,10 @@ const FilteredDestinations = ({destinations}) => {
     
     return (
         <>
-            
-            <Box display={{base:'none',md:'none',slg:'block',lg:'block',xl:'block'}} bgColor={'#F5F5F5'} height={{base:'',md:'',slg:'100vh',lg:'100vh',xl:''}} width={{base:'',md:'',slg:'26vw',lg:'25vw',xl:''}} position={{base:'',md:'fixed',slg:'fixed',lg:'fixed',xl:'fixed'}} ml={{base:'',md:'',slg:'47.4rem',lg:'60rem',xl:'68.5rem',dm:'72rem',xxl:'78rem',xxxl:''}}>
+        <Box ml={{dm:'6.8vw'}}>
+            <Box display={{base:'none',md:'none',slg:'block',lg:'block',xl:'block',dm:'block',xxl:'block'}} bgColor={'#F5F5F5'} height={{base:'',md:'',slg:'100vh',lg:'100vh',xl:''}} width={{base:'',md:'',slg:'26vw',lg:'25vw',xl:''}} position={{base:'',md:'fixed',slg:'fixed',lg:'fixed',xl:'fixed',dm:''}}  ml={{base:'',md:'',slg:'47.4rem',lg:'60rem',xl:'68.5rem',dm:'80rem',xxl:'78rem',xxxl:''}} >
 
-                <Heading mt={{base:'',md:'',slg:'2rem',lg:'3rem',xl:''}} ml={{base:'',md:'',slg:'1rem',lg:'10px',xl:'2rem'}} color=''>Preffered region</Heading>
+                <Heading mt={{base:'',md:'',slg:'2rem',lg:'3rem',xl:''}} ml={{base:'',md:'',slg:'1rem',lg:'10px',xl:'2rem',dm:''}} color=''>Preffered region</Heading>
 
                 
                 <Divider borderWidth={'1px'} mt={{base:'',md:'',slg:'1rem',lg:'3rem',xl:''}}/>
@@ -52,6 +52,7 @@ const FilteredDestinations = ({destinations}) => {
                 <Divider borderWidth='1px'/>
                 
           </Box>
+        </Box>
 
         {/* md screens and below */}
         <Box display={{base:'block',xmd:'flex',md:'flex',slg:'none',lg:'none',xl:'none'}}>

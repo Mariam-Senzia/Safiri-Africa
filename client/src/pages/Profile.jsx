@@ -139,12 +139,12 @@ const Profile = () => {
 
     return(
         <Flex >
-        <Navbar display={{base:'none',xmd:'none',md:'none',lg:'flex',xl:'flex'}}/>
+        <Navbar display={{base:'none',xmd:'none',md:'none',lg:'flex',xl:'flex',dm:'flex'}}/>
 
-        <Box borderWidth='px' width={{base:'60rem',sm:'60rem',md:'60rem',lg:'60rem',xl:'60rem',xxl:'66rem'}} ml={{base:'-2rem',sm:'',md:'rem',slg:'13rem',lg:'20rem',xl:'25rem',dm:'27rem',xxl:'30rem'}} mt={{base:'5rem',md:'',slg:'0.5rem',lg:'0.5rem',xl:'1'}} height=''>
+        <Box borderWidth='px' width={{base:'60rem',sm:'60rem',md:'60rem',lg:'60rem',xl:'60rem',xxl:'66rem'}} ml={{base:'-2rem',sm:'',md:'rem',slg:'13rem',lg:'20rem',xl:'25rem',dm:'32rem',xxl:'30rem'}} mt={{base:'5rem',md:'',slg:'0.5rem',lg:'0.5rem',xl:'1'}} height=''>
            
             <Flex ml='1.5rem' mt='rem' bgColor='' p='1rem' borderRadius='10px'>
-                <Avatar ml={{base:'rem',xmd:'1rem',md:'1.5rem',lg:'',xl:''}}  bgColor={randomColor} name={loggedInUser} size={{base:'xl',md:'2xl',lg:'2xl',xl:'2xl'}} src='' />
+                <Avatar ml={{base:'rem',xmd:'1rem',md:'1.5rem',lg:'',xl:'',dm:'8rem'}}  bgColor={randomColor} name={loggedInUser} size={{base:'xl',md:'2xl',lg:'2xl',xl:'2xl'}} src='' />
                 <Box>
                 <Heading ml={{base:'1rem',xmd:'1rem',md:'1rem',lg:'1.5rem',xl:'1.5rem'}} size='lg' mt='2.5rem' color=''>{loggedInUser}</Heading>
                 </Box>
@@ -156,9 +156,9 @@ const Profile = () => {
                 </IconButton>
             </Tooltip> */}
 
-            <Flex gap={{base:'0.7rem',xxm:'1rem',xm:'1rem',sm:'1rem',md:'3rem',lg:'3rem',xl:'3rem'}} mt='0.5rem' mb='3rem'>
+            <Flex gap={{base:'0.7rem',xxm:'1rem',xm:'1rem',sm:'1rem',md:'3rem',lg:'3rem',xl:'3rem',dm:'rem'}} mt='0.5rem' mb='3rem' width={{dm:'62.5vw'}}>
                 {/* <Heading size='md' ml='3rem' color='#FF4500' textDecorationLine='' mt='1rem'>My Posts</Heading> */}
-                <Button bgColor='#F58549' colorScheme='#F58549' width={{base:'6rem',xxm:'6.5rem',xm:'7rem',sm:'7.5rem',xmd:'30vw',md:'26vw',slg:'19vw',lg:'19vw',xl:'18vw',xxl:'25vw'}} ml={{base:'2.3rem',xmd:'3.5rem',md:'4.5rem',lg:'4rem',xl:'4rem'}} >My Posts</Button>
+                <Button bgColor='#F58549' colorScheme='#F58549' width={{base:'6rem',xxm:'6.5rem',xm:'7rem',sm:'7.5rem',xmd:'30vw',md:'26vw',slg:'19vw',lg:'19vw',xl:'18vw',dm:'vw',xxl:'25vw'}} ml={{base:'2.3rem',xmd:'3.5rem',md:'4.5rem',lg:'4rem',xl:'4rem',dm:'10.1rem'}} >My Posts</Button>
                 <Button bgColor='#F58549' colorScheme='#F58549' width={{base:'6rem',xxm:'6.5rem',xm:'7rem',sm:'7.5rem',xmd:'30vw',md:'26vw',slg:'19vw',lg:'19vw',xl:'18vw',xxl:'25vw'}} onClick={handleUpdateProfile}>Edit Profile</Button>
                 <Button width={{base:'6rem',xxm:'6.5rem',xm:'7.7rem',sm:'8.3rem',xmd:'30vw',md:'26vw',slg:'20vw',lg:'19vw',xl:'18vw',xxl:'25vw'}} bgColor='#F58549' colorScheme='#F58549' onClick={handleSignOut}>
                     <BiLogIn size='1.5rem' />
@@ -167,7 +167,7 @@ const Profile = () => {
             </Flex>
 
             {filteredDestinations && filteredDestinations.length > 0 ? (
-            <Box mb='2rem' mt='-1.3rem' ml={{base:'2rem',md:'',slg:'4.5rem',lg:'4rem',xl:'4rem'}}>
+            <Box mb='2rem' mt='-1.3rem' ml={{base:'2rem',md:'',slg:'4.5rem',lg:'4rem',xl:'4rem',dm:'10.1rem'}}>
             {filteredDestinations.map((dest) => {
                 const destLikes = likes.filter((like) => like.destination_id === dest.id); //likes that match the destination id
 
@@ -268,12 +268,14 @@ const Profile = () => {
                 
                     })}
              </Box> ) : (
-
-            <Box bgColor='' borderWidth='2px' p={{base:'2rem',xxm:'3rem',xm:'4rem',sm:'5rem',xmd:'10rem',md:'rem',slg:'6rem',lg:'rem',xl:'5rem',xxl:'8.5rem'}} ml={{base:'2.5rem',xm:'3.5rem',sm:'rem',md:'4.7rem',lg:'4.1rem',xl:'4rem',dm:'',xxl:'4rem'}} borderRadius='10px' width={{base:'19rem',xxm:'21.5rem',xm:'23.5rem',sm:'25rem',xmd:'45rem',md:'46rem',slg:'43rem',lg:'51.5rem',xl:'56rem',xxl:'62rem'}}> 
-                <Text ml={{base:'',xxm:'rem',xm:'rem',sm:'rem',md:'rem',lg:'rem',xl:'9rem'}}>No posts yet! Share your favorite destinations to inspire others.</Text>
+            
+            <Box ml={{dm:'6.3rem'}}>
+            <Box bgColor='' borderWidth='2px' p={{base:'2rem',xxm:'3rem',xm:'4rem',sm:'5rem',xmd:'10rem',md:'rem',slg:'6rem',lg:'rem',xl:'5rem',dm:'rem',xxl:'8.5rem'}} ml={{base:'2.5rem',xm:'3.5rem',sm:'rem',md:'4.7rem',lg:'4.1rem',xl:'4rem',dm:'15rem',xxl:'4rem'}} borderRadius='10px' width={{base:'19rem',xxm:'21.5rem',xm:'23.5rem',sm:'25rem',xmd:'45rem',md:'46rem',slg:'43rem',lg:'51.5rem',xl:'56rem',dm:'',xxl:'62rem'}}> 
+                <Text ml={{base:'',xxm:'rem',xm:'rem',sm:'rem',md:'rem',lg:'rem',xl:'9rem',dm:''}}>No posts yet! Share your favorite destinations to inspire others.</Text>
                 <Box ml={{base:'5rem',xxm:'4rem',xm:'rem',sm:'rem',xmd:'6rem',md:'8rem',lg:'rem',xl:'12rem',xxl:'10rem'}} mt={{base:'',xm:'rem',sm:'rem',md:'rem',lg:'rem',xl:'-1rem'}}>
                 <Post />
                 </Box>
+            </Box>
             </Box>
             )}
         </Box>
