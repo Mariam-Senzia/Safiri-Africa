@@ -1,6 +1,6 @@
 # Safiri-Africa
 
-Safiri Africa is a travel application (Still in works) designed for enthusiasts who have visited or plan to visit Africa. The app highlights various destinations across the continent through videos and images, allowing users to like, comment, and share. Additionally, it features an Explore page for different countries, showcasing photos, maps, currencies, and spoken languages, making travel planning convenient.
+Safiri Africa is an application designed for travelers who have visited or plan to visit Africa. It showcases various destinations across the continent through videos and images, allowing users to like, comment, and share their experiences. The app also features an Explore page for different countries, providing photos, maps, currencies, and spoken languages, making travel planning easier and more informative.
 
 ## Table of Contents
 ### - Features
@@ -19,9 +19,9 @@ Safiri Africa is a travel application (Still in works) designed for enthusiasts 
 - User Interactions: Users can post, share, and interact with content.
 
 # Technologies Used
-- Frontend: React.js, Chakra UI, JavaScript
+- Frontend: React.js, Chakra UI, JavaScript, Zustand
 - Backend: Flask, Flask-Restful, Flask-Bcrypt, Flask-JWT-Extended, Python
-- Database: SQLite
+- Database: PostgreSql
 - Media Storage: Cloudinary for image and video uploads
 - Authentication: JWT (JSON Web Token)
 
